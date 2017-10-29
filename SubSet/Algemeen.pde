@@ -20,3 +20,36 @@ String[] genereerKaarten(String[] kaarten_eigenschappen)
 
   return nieuweKaarten;
 }
+
+String[] kaartenSchudden(String[] kaarten)
+{
+  String[] nieuweKaartenStapel = new String[kaarten.length];
+  int[] gebruikteKaartenIndex = new int[kaarten.length];
+  int randomIndex;
+  int randomKaartenIndex;
+  for (int kaartenIndex = 0; kaartenIndex < kaarten.length; kaartenIndex++)
+  {
+    randomIndex = floor(random(0, kaarten.length));
+    while(randomIndex == gebruikteKaartenStapel[randomKaartenIndex])
+    {
+      
+    }
+    gebruikteKaartenIndex[kaartenIndex] = randomIndex;
+    nieuweKaartenStapel[kaartenIndex] = kaarten[randomIndex];
+  }
+  println("Test:");
+  printArray(gebruikteKaartenIndex);
+  return nieuweKaartenStapel;
+}
+
+boolean muisBovenRect(float xPositie, float yPositie, float breedte, float hoogte) {
+  return (mouseX >= xPositie && mouseX <= xPositie + breedte && mouseY >= yPositie && mouseY <= yPositie + hoogte);
+}
+
+boolean muisBovenCirkel(float xPositie, float yPositie, float diameter) {
+  float straal = diameter / 2;
+  float aanliggende = (xPositie - mouseX);
+  float overstaande = (yPositie - mouseY);
+  float afstand = sqrt(sq(overstaande) + sq(aanliggende));
+  return afstand <= straal;
+}
