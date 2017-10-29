@@ -24,21 +24,14 @@ String[] genereerKaarten(String[] kaarten_eigenschappen)
 String[] kaartenSchudden(String[] kaarten)
 {
   String[] nieuweKaartenStapel = new String[kaarten.length];
-  int[] gebruikteKaartenIndex = new int[kaarten.length];
-  int randomIndex;
-  int randomKaartenIndex;
+  int[] gebruikteIndex = new int[kaarten.length];
   for (int kaartenIndex = 0; kaartenIndex < kaarten.length; kaartenIndex++)
   {
-    randomIndex = floor(random(0, kaarten.length));
-    while(randomIndex == gebruikteKaartenStapel[randomKaartenIndex])
-    {
-      
-    }
-    gebruikteKaartenIndex[kaartenIndex] = randomIndex;
+    int randomIndex = floor(random(0, kaarten.length));
     nieuweKaartenStapel[kaartenIndex] = kaarten[randomIndex];
+    gebruikteIndex[kaartenIndex] = randomIndex;
   }
-  println("Test:");
-  printArray(gebruikteKaartenIndex);
+  printArray(gebruikteIndex);
   return nieuweKaartenStapel;
 }
 

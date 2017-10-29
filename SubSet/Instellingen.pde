@@ -24,4 +24,11 @@ void pauzeKnop(float xPositie, float yPositie)
   float pauzeKolomMarge = MARGE * 2;
   rect(xPositie + pauzeKolomMarge, yPositie + MARGE, pauzeKolomBreedte, knopLengte - pauzeKolomMarge);
   rect(xPositie + knopLengte - pauzeKolomMarge, yPositie + MARGE, pauzeKolomBreedte, knopLengte - pauzeKolomMarge);
+  if(muisBovenRect(xPositie, yPositie, knopLengte, knopLengte))
+  {
+    noFill();
+    stroke(yellow);
+    strokeWeight(2);
+    rect(xPositie, yPositie, knopLengte, knopLengte, MARGE / 2);
+  }
 }
