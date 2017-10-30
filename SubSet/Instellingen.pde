@@ -2,6 +2,8 @@ String[] eigenschappen = {"123", "rgb", "red"};
 
 final int MARGE = 10;
 final int MENUHOOGTE = 128;
+final float HOOGTEKAART = (480 - MENUHOOGTE - MARGE * 5) / 3;
+final float BREEDTEKAART = HOOGTEKAART / 2;
 
 color black = #000000;
 color red = #FF0000;

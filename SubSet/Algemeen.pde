@@ -1,48 +1,18 @@
-String[] genereerKaarten(String[] kaarten_eigenschappen)
+boolean muisBovenRect(float xPositie, float yPositie, float breedte, float hoogte)
 {
-  int aantalKaarten = (int)pow(3, kaarten_eigenschappen.length);
-  String[] nieuweKaarten = new String[aantalKaarten];
-  int kaartIndex = 0;
-  for (int aantalIndex = 0; aantalIndex < 3; aantalIndex++)
-  {
-    for (int kleurIndex = 0; kleurIndex < 3; kleurIndex++)
-    {
-      for (int vormIndex = 0; vormIndex < 3; vormIndex++)
-      {
-        char aantalVorm = kaarten_eigenschappen[0].charAt(aantalIndex);
-        char kleurVorm = kaarten_eigenschappen[1].charAt(kleurIndex);
-        char soortVorm = kaarten_eigenschappen[2].charAt(vormIndex);
-        nieuweKaarten[kaartIndex] = aantalVorm + "" + kleurVorm + "" + soortVorm;
-        kaartIndex++;
-      }
-    }
-  }
-
-  return nieuweKaarten;
-}
-
-String[] kaartenSchudden(String[] kaarten)
-{
-  String[] nieuweKaartenStapel = new String[kaarten.length];
-  int[] gebruikteIndex = new int[kaarten.length];
-  for (int kaartenIndex = 0; kaartenIndex < kaarten.length; kaartenIndex++)
-  {
-    int randomIndex = floor(random(0, kaarten.length));
-    nieuweKaartenStapel[kaartenIndex] = kaarten[randomIndex];
-    gebruikteIndex[kaartenIndex] = randomIndex;
-  }
-  printArray(gebruikteIndex);
-  return nieuweKaartenStapel;
-}
-
-boolean muisBovenRect(float xPositie, float yPositie, float breedte, float hoogte) {
   return (mouseX >= xPositie && mouseX <= xPositie + breedte && mouseY >= yPositie && mouseY <= yPositie + hoogte);
 }
 
-boolean muisBovenCirkel(float xPositie, float yPositie, float diameter) {
+boolean muisBovenCirkel(float xPositie, float yPositie, float diameter)
+{
   float straal = diameter / 2;
   float aanliggende = (xPositie - mouseX);
   float overstaande = (yPositie - mouseY);
   float afstand = sqrt(sq(overstaande) + sq(aanliggende));
   return afstand <= straal;
+}
+
+boolean bekijkVerschil(char kaart1, char kaart2, char kaart3)
+{
+  return (kaart1 != kaart2 && kaart2 != kaart3 && kaart1 != kaart3) || (kaart1 == kaart2 && kaart2 == kaart3 && kaart1 == kaart3);
 }
