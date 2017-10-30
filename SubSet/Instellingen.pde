@@ -6,6 +6,7 @@ final float HOOGTEKAART = (480 - MENUHOOGTE - MARGE * 5) / 3;
 final float BREEDTEKAART = HOOGTEKAART / 2;
 
 color black = #000000;
+color gray = #BBBBBB;
 color red = #FF0000;
 color yellow = #FFFF00;
 color green = #00FF00;

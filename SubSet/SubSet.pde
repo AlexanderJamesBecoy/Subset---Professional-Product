@@ -31,11 +31,12 @@ void draw() {
   tekenStapelKaarten(nGedekteKaarten);
   if (nGeselecteerdePosities == 3)
   {
-    println("test");
     String[] kandidaatset = kandidaatsetOmzetten(geselecteerdePosities);
     if (isSet(kandidaatset))
     {
       println("It's a set!");
+      //nGedekteKaarten -= geselecteerdePosities.length;
+      openKaarten = verwijderOpenKaarten(kandidaatset);
     } else
     {
       println("It's not a set!");

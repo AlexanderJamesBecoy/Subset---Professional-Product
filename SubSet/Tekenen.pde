@@ -27,72 +27,75 @@ void tekenKaart(String kaart, int bordpositie) {
   float figuurHoogte = ((HOOGTEKAART - MARGE) / 3) / 2;
   float figuurMarge = 0;
   int aantalFiguren = 0;
-  stroke(black);
-  strokeWeight(1);
-  fill(white);
-  rect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART, kaartenMarge);
-  switch(kaart.charAt(0))
+  if (kaart != "zzz")
   {
-  case '1':
-    aantalFiguren = 1;
-    figuurMarge = HOOGTEKAART / 2 - figuurHoogte / 2;
-    break;
-  case '2':
-    aantalFiguren = 2;
-    figuurMarge = HOOGTEKAART / 2 - figuurHoogte;
-    break;
-  case '3':
-    aantalFiguren = 3;
-    figuurMarge = HOOGTEKAART / 2 - figuurHoogte * 2;
-    break;
-  }
-  switch(kaart.charAt(1))
-  {
-  case 'r':
-    stroke(red);
-    fill(red);
-    break;
-  case 'g':
-    stroke(green);
-    fill(green);
-    break;
-  case 'b':
-    stroke(blue);
-    fill(blue);
-    break;
-  }
-  strokeWeight(2);
-  for (int aantal = 0; aantal < aantalFiguren; aantal++)
-  {
-    switch(kaart.charAt(2))
+    stroke(black);
+    strokeWeight(1);
+    fill(white);
+    rect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART, kaartenMarge);
+    switch(kaart.charAt(0))
     {
-    case 'r':
-      rect(kaartX + kaartenMarge, kaartY + figuurHoogte * aantal + MARGE * aantal + figuurMarge, BREEDTEKAART - kaartenMarge * 2, figuurHoogte);
+    case '1':
+      aantalFiguren = 1;
+      figuurMarge = HOOGTEKAART / 2 - figuurHoogte / 2;
       break;
-    case 'e':
-      ellipse(kaartX + (BREEDTEKAART / 2), kaartY + (figuurHoogte / 2) + + figuurHoogte * aantal + MARGE * aantal + figuurMarge, BREEDTEKAART - MARGE, figuurHoogte);
+    case '2':
+      aantalFiguren = 2;
+      figuurMarge = HOOGTEKAART / 2 - figuurHoogte;
       break;
-    case 'd':
-      driehoek(kaartX + kaartenMarge, kaartY + figuurHoogte * aantal + MARGE * aantal + figuurMarge, BREEDTEKAART - kaartenMarge * 2, figuurHoogte);
+    case '3':
+      aantalFiguren = 3;
+      figuurMarge = HOOGTEKAART / 2 - figuurHoogte * 2;
       break;
     }
-  }
-  if (muisBovenRect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART))
-  {
-    noFill();
-    stroke(yellow);
+    switch(kaart.charAt(1))
+    {
+    case 'r':
+      stroke(red);
+      fill(red);
+      break;
+    case 'g':
+      stroke(green);
+      fill(green);
+      break;
+    case 'b':
+      stroke(blue);
+      fill(blue);
+      break;
+    }
     strokeWeight(2);
-    rect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART, kaartenMarge);
-  }
-  for (int bekijkGeklikt = 0; bekijkGeklikt < geselecteerdePosities.length; bekijkGeklikt++)
-  {
-    if (geselecteerdePosities[bekijkGeklikt] == bordpositie)
+    for (int aantal = 0; aantal < aantalFiguren; aantal++)
+    {
+      switch(kaart.charAt(2))
+      {
+      case 'r':
+        rect(kaartX + kaartenMarge, kaartY + figuurHoogte * aantal + MARGE * aantal + figuurMarge, BREEDTEKAART - kaartenMarge * 2, figuurHoogte);
+        break;
+      case 'e':
+        ellipse(kaartX + (BREEDTEKAART / 2), kaartY + (figuurHoogte / 2) + + figuurHoogte * aantal + MARGE * aantal + figuurMarge, BREEDTEKAART - MARGE, figuurHoogte);
+        break;
+      case 'd':
+        driehoek(kaartX + kaartenMarge, kaartY + figuurHoogte * aantal + MARGE * aantal + figuurMarge, BREEDTEKAART - kaartenMarge * 2, figuurHoogte);
+        break;
+      }
+    }
+    if (muisBovenRect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART))
     {
       noFill();
       stroke(yellow);
       strokeWeight(2);
-      rect(kaartX - kaartenMarge, kaartY - kaartenMarge, BREEDTEKAART + MARGE, HOOGTEKAART + MARGE, kaartenMarge);
-      bekijkGeklikt = geselecteerdePosities.length;
+      rect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART, kaartenMarge);
+    }
+    for (int bekijkGeklikt = 0; bekijkGeklikt < geselecteerdePosities.length; bekijkGeklikt++)
+    {
+      if (geselecteerdePosities[bekijkGeklikt] == bordpositie)
+      {
+        noFill();
+        stroke(yellow);
+        strokeWeight(2);
+        rect(kaartX - kaartenMarge, kaartY - kaartenMarge, BREEDTEKAART + MARGE, HOOGTEKAART + MARGE, kaartenMarge);
+        bekijkGeklikt = geselecteerdePosities.length;
+      }
     }
   }
 }
@@ -101,16 +104,26 @@ void tekenStapelKaarten(int nGedekteKaarten) {
 
   float kaartX = width - MENUHOOGTE;
   float kaartY = MENUHOOGTE * 2;
-  for (int gedekteKaart = 0; gedekteKaart < nGedekteKaarten; gedekteKaart++)
+  if (nGedekteKaarten > 0)
   {
-    stroke(black);
-    strokeWeight(1);
-    fill(#AAAAAA);
+    for (int gedekteKaart = 0; gedekteKaart < nGedekteKaarten; gedekteKaart++)
+    {
+      stroke(black);
+      strokeWeight(1);
+      fill(#AAAAAA);
+      rect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART, MARGE / 2);
+      noStroke();
+      fill(#DDDDDD);
+      rect(kaartX + MARGE / 2, kaartY + MARGE / 2, BREEDTEKAART - MARGE, HOOGTEKAART - MARGE, MARGE / 2);
+      kaartY -= 2;
+    }
+  } else
+  {
+    stroke(gray);
+    strokeWeight(2);
+    noFill();
+    kaartY = MENUHOOGTE * 2;
     rect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART, MARGE / 2);
-    noStroke();
-    fill(#DDDDDD);
-    rect(kaartX + MARGE / 2, kaartY + MARGE / 2, BREEDTEKAART - MARGE, HOOGTEKAART - MARGE, MARGE / 2);
-    kaartY -= 2;
   }
   fill(black);
   textSize(12);
