@@ -39,6 +39,37 @@ String pakKaartVanStapel()
   return kaartUitStapel;
 }
 
+int nSetsOpTafel()
+{
+  int aantalMogelijkeSets = 0;
+  for (int openKaartIndex_1 = 0; openKaartIndex_1 < openKaarten.length; openKaartIndex_1++)
+  {
+    String[] kaartenCombinaties = new String[3];
+    kaartenCombinaties[0] = openKaarten[openKaartIndex_1];
+    for (int openKaartIndex_2 = 0; openKaartIndex_2 < openKaarten.length; openKaartIndex_2++)
+    {
+      if (kaartenCombinaties[0] != openKaarten[openKaartIndex_2]) {
+        kaartenCombinaties[1] = openKaarten[openKaartIndex_2];
+        for (int openKaartIndex_3 = 0; openKaartIndex_3 < openKaarten.length; openKaartIndex_3++)
+        {
+          if(kaartenCombinaties[1] != openKaarten[openKaartIndex_3]) {
+            kaartenCombinaties[2] = openKaarten[openKaartIndex_3];
+            if (isSet(kaartenCombinaties))
+            {
+              aantalMogelijkeSets++;
+            }
+          } else {
+            openKaartIndex_3 = openKaarten.length;
+          }
+        }
+      } else {
+        openKaartIndex_2 = openKaarten.length;
+      }
+    }
+  }
+  return aantalMogelijkeSets;
+}
+
 boolean isSet(String[] kandidaatset)
 {
   char[] aantal = new char[3];
@@ -64,7 +95,6 @@ String[] kandidaatsetOmzetten(int[] gekozenPosities)
         gekozenKaarten[gekozenKaartIndex] = openKaarten[openKaartIndex];
     }
   }
-  printArray(gekozenKaarten);
   return gekozenKaarten;
 }
 
@@ -144,7 +174,5 @@ int[] coordinatenBijBordpositie(int bordpositie)
       coordinaatIndex = geselecteerdePosities.length;
     }
   }
-  printArray(nieuweCoordinaten);
-  println(nGeselecteerdePosities);
   return nieuweCoordinaten;
 }
