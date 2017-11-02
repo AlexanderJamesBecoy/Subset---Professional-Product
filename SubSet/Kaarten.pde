@@ -52,7 +52,7 @@ int nSetsOpTafel()
         kaartenCombinaties[1] = openKaarten[openKaartIndex_2];
         for (int openKaartIndex_3 = 0; openKaartIndex_3 < openKaarten.length; openKaartIndex_3++)
         {
-          if(kaartenCombinaties[1] != openKaarten[openKaartIndex_3]) {
+          if (kaartenCombinaties[1] != openKaarten[openKaartIndex_3]) {
             kaartenCombinaties[2] = openKaarten[openKaartIndex_3];
             if (isSet(kaartenCombinaties))
             {
@@ -70,109 +70,139 @@ int nSetsOpTafel()
   return aantalMogelijkeSets;
 }
 
-boolean isSet(String[] kandidaatset)
+void geefHint()
 {
-  char[] aantal = new char[3];
-  char[] kleur = new char[3];
-  char[] vorm = new char[3];
-  for (int kandidaatIndex = 0; kandidaatIndex < kandidaatset.length; kandidaatIndex++)
+  geselecteerdePosities = resetGeselecteerdePosities(geselecteerdePosities);
+  for (int kaart1 = 0; kaart1 < openKaarten.length; kaart1++)
   {
-    aantal[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(0);
-    kleur[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(1);
-    vorm[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(2);
-  }
-  return (bekijkVerschil(aantal[0], aantal[1], aantal[2]) && bekijkVerschil(kleur[0], kleur[1], kleur[2]) && bekijkVerschil(vorm[0], vorm[1], vorm[2]));
-}
-
-String[] kandidaatsetOmzetten(int[] gekozenPosities)
-{
-  String[] gekozenKaarten = new String[gekozenPosities.length];
-  for (int openKaartIndex = 0; openKaartIndex < openKaarten.length; openKaartIndex++)
-  {
-    for (int gekozenKaartIndex = 0; gekozenKaartIndex < gekozenKaarten.length; gekozenKaartIndex++)
+    String[] kaartenCombinaties = new String[3];
+    kaartenCombinaties[0] = openKaarten[kaart1];
+    for (int kaart2 = 0; kaart2 < openKaarten.length; kaart2++)
     {
-      if (gekozenPosities[gekozenKaartIndex] == openKaartIndex)
-        gekozenKaarten[gekozenKaartIndex] = openKaarten[openKaartIndex];
-    }
-  }
-  return gekozenKaarten;
-}
-
-String[] verwijderOpenKaarten(String[] gekozenSet)
-{
-  String[] kandidaatset = gekozenSet;
-  String[] nieuweOpenKaarten = openKaarten;
-  for (int kaartIndex = 0; kaartIndex < openKaarten.length; kaartIndex++)
-  {
-    for (int kandidaatIndex = 0; kandidaatIndex < kandidaatset.length; kandidaatIndex++)
-    {
-      if (nieuweOpenKaarten[kaartIndex] == kandidaatset[kandidaatIndex])
+      if (openKaarten[kaart1] != openKaarten[kaart2])
       {
-        if (nGedekteKaarten > 0)
+        kaartenCombinaties[1] = openKaarten[kaart2];
+        for (int kaart3 = 0; kaart3 < openKaarten.length; kaart3++)
         {
-          nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
-          nGedekteKaarten--;
-        } else
-        {
-          nieuweOpenKaarten[kaartIndex] = "zzz";
+          if (openKaarten[kaart2] != openKaarten[kaart3])
+          {
+            kaartenCombinaties[2] = openKaarten[kaart3];
+            if(isSet(kaartenCombinaties))
+            {
+              geselecteerdePosities[0] = kaart1;
+              geselecteerdePosities[1] = kaart2;
+              nGeselecteerdePosities = 2;
+            }
+          }
         }
       }
     }
   }
-  geselecteerdePosities = resetGeselecteerdePosities(geselecteerdePosities);
-  return nieuweOpenKaarten;
 }
 
-int[] resetGeselecteerdePosities(int[] geselecteerdePosities)
-{
-  int[] nieuweArray = new int[geselecteerdePosities.length];
-  for (int arrayIndex = 0; arrayIndex < nieuweArray.length; arrayIndex++)
+  boolean isSet(String[] kandidaatset)
   {
-    nieuweArray[arrayIndex] = -1;
-  }
-  return nieuweArray;
-}
-
-int aangekliktePositie()
-{
-  int bordpositie = -1;
-  for (int kaartIndex = 0; kaartIndex < openKaarten.length; kaartIndex++)
-  {
-    float breedteMarge = MARGE * 4;
-    float kaartX = MENUHOOGTE + (breedteMarge * ((kaartIndex % 3) + 1) + BREEDTEKAART * (kaartIndex % 3));
-    float kaartY = MENUHOOGTE + (MARGE * ((kaartIndex / 3) + 1) + HOOGTEKAART * (kaartIndex / 3));
-    if (muisBovenRect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART))
+    char[] aantal = new char[3];
+    char[] kleur = new char[3];
+    char[] vorm = new char[3];
+    for (int kandidaatIndex = 0; kandidaatIndex < kandidaatset.length; kandidaatIndex++)
     {
-      bordpositie = kaartIndex;
+      aantal[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(0);
+      kleur[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(1);
+      vorm[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(2);
     }
+    return (bekijkVerschil(aantal[0], aantal[1], aantal[2]) && bekijkVerschil(kleur[0], kleur[1], kleur[2]) && bekijkVerschil(vorm[0], vorm[1], vorm[2]));
   }
-  return bordpositie;
-}
 
-int[] coordinatenBijBordpositie(int bordpositie)
-{
-  int[] nieuweCoordinaten = geselecteerdePosities;
-  if (bordpositie == -1)
+  String[] kandidaatsetOmzetten(int[] gekozenPosities)
   {
-    return nieuweCoordinaten;
-  }
-  for (int bekijkPositie = 0; bekijkPositie < nieuweCoordinaten.length; bekijkPositie++)
-  {
-    if (nieuweCoordinaten[bekijkPositie] == bordpositie)
+    String[] gekozenKaarten = new String[gekozenPosities.length];
+    for (int openKaartIndex = 0; openKaartIndex < openKaarten.length; openKaartIndex++)
     {
-      nieuweCoordinaten[bekijkPositie] = -1;
-      if (nGeselecteerdePosities > 0) nGeselecteerdePosities--;
+      for (int gekozenKaartIndex = 0; gekozenKaartIndex < gekozenKaarten.length; gekozenKaartIndex++)
+      {
+        if (gekozenPosities[gekozenKaartIndex] == openKaartIndex)
+          gekozenKaarten[gekozenKaartIndex] = openKaarten[openKaartIndex];
+      }
+    }
+    return gekozenKaarten;
+  }
+
+  String[] verwijderOpenKaarten(String[] gekozenSet)
+  {
+    String[] kandidaatset = gekozenSet;
+    String[] nieuweOpenKaarten = openKaarten;
+    for (int kaartIndex = 0; kaartIndex < openKaarten.length; kaartIndex++)
+    {
+      for (int kandidaatIndex = 0; kandidaatIndex < kandidaatset.length; kandidaatIndex++)
+      {
+        if (nieuweOpenKaarten[kaartIndex] == kandidaatset[kandidaatIndex])
+        {
+          if (nGedekteKaarten > 0)
+          {
+            nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
+            nGedekteKaarten--;
+          } else
+          {
+            nieuweOpenKaarten[kaartIndex] = "zzz";
+          }
+        }
+      }
+    }
+    geselecteerdePosities = resetGeselecteerdePosities(geselecteerdePosities);
+    return nieuweOpenKaarten;
+  }
+
+  int[] resetGeselecteerdePosities(int[] geselecteerdePosities)
+  {
+    int[] nieuweArray = new int[geselecteerdePosities.length];
+    for (int arrayIndex = 0; arrayIndex < nieuweArray.length; arrayIndex++)
+    {
+      nieuweArray[arrayIndex] = -1;
+    }
+    return nieuweArray;
+  }
+
+  int aangekliktePositie()
+  {
+    int bordpositie = -1;
+    for (int kaartIndex = 0; kaartIndex < openKaarten.length; kaartIndex++)
+    {
+      float breedteMarge = MARGE * 4;
+      float kaartX = MENUHOOGTE + (breedteMarge * ((kaartIndex % 3) + 1) + BREEDTEKAART * (kaartIndex % 3));
+      float kaartY = MENUHOOGTE + (MARGE * ((kaartIndex / 3) + 1) + HOOGTEKAART * (kaartIndex / 3));
+      if (muisBovenRect(kaartX, kaartY, BREEDTEKAART, HOOGTEKAART))
+      {
+        bordpositie = kaartIndex;
+      }
+    }
+    return bordpositie;
+  }
+
+  int[] coordinatenBijBordpositie(int bordpositie)
+  {
+    int[] nieuweCoordinaten = geselecteerdePosities;
+    if (bordpositie == -1)
+    {
       return nieuweCoordinaten;
     }
-  }
-  for (int coordinaatIndex = 0; coordinaatIndex < geselecteerdePosities.length; coordinaatIndex++)
-  {
-    if (geselecteerdePosities[coordinaatIndex] == -1)
+    for (int bekijkPositie = 0; bekijkPositie < nieuweCoordinaten.length; bekijkPositie++)
     {
-      nieuweCoordinaten[coordinaatIndex] = bordpositie;
-      nGeselecteerdePosities++;
-      coordinaatIndex = geselecteerdePosities.length;
+      if (nieuweCoordinaten[bekijkPositie] == bordpositie)
+      {
+        nieuweCoordinaten[bekijkPositie] = -1;
+        if (nGeselecteerdePosities > 0) nGeselecteerdePosities--;
+        return nieuweCoordinaten;
+      }
     }
+    for (int coordinaatIndex = 0; coordinaatIndex < geselecteerdePosities.length; coordinaatIndex++)
+    {
+      if (geselecteerdePosities[coordinaatIndex] == -1)
+      {
+        nieuweCoordinaten[coordinaatIndex] = bordpositie;
+        nGeselecteerdePosities++;
+        coordinaatIndex = geselecteerdePosities.length;
+      }
+    }
+    return nieuweCoordinaten;
   }
-  return nieuweCoordinaten;
-}

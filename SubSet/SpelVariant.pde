@@ -85,7 +85,7 @@ void spelGewonnen()
   float rectX = rectBreedte - rectBreedte / 2;
   float rectY = MENUHOOGTE + rectMarge;
   String[] highscoreLijst = loadStrings("savefiles/highscoreSubset1P.txt");
-  tekenModal("HIGHSCORE", rectX, rectY, rectBreedte, rectHoogte);
+  tekenModal("HIGHSCORE", "Terug naar het hoofdmenu", rectX, rectY, rectBreedte, rectHoogte);
   for(int highScore = 0; highScore < highscoreLijst.length; highScore++)
   {
     if(score > float(highscoreLijst[highScore]))

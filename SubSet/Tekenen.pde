@@ -31,16 +31,16 @@ void tekenMenu() {
   textAlign(CENTER, CENTER);
   text(setsGevonden, schermBreedte - menuBarBreedte / 2, menuMarge + menuBarHoogte / 2);
   text(score, schermBreedte - menuBarBreedte / 2, menuMarge + menuBarHoogte + menuBarHoogte / 2);
-  pauzeKnop(MARGE * 2, MARGE + menuMarge, knopLengte);
-  hintKnop(MARGE * 2, MARGE + menuMarge * 2 + knopLengte, knopLengte);
-  menuTekst(menuNotificatie, schermBreedte / 2, MENUHOOGTE / 2);
+  menuTekst(menuNotificatie, MARGE * 2, MARGE + TEKSTGROOTTE_16);
+  pauzeKnop(MARGE * 2, MARGE + knopLengte, knopLengte);
+  hintKnop(MARGE * 3 + knopLengte * 4, MARGE + knopLengte, knopLengte);
 }
 
 void menuTekst(String tekst, float xPositie, float yPositie)
 {
   fill(WHITE);
   textSize(TEKSTGROOTTE_20);
-  textAlign(CENTER, CENTER);
+  textAlign(LEFT, TOP);
   text(tekst, xPositie, yPositie);
 }
 
@@ -51,7 +51,7 @@ void menuPauze()
   float rectHoogte = (schermHoogte - MENUHOOGTE) * 0.8;
   float rectX = rectBreedte - rectBreedte / 2;
   float rectY = MENUHOOGTE + rectMarge;
-  tekenModal("Pauze", rectX, rectY, rectBreedte, rectHoogte);
+  tekenModal("Pauze", "Terug", rectX, rectY, rectBreedte, rectHoogte);
 }
 
 void tekenKaart(String kaart, int bordpositie) {
@@ -171,7 +171,7 @@ void tekenStapelKaarten(int nGedekteKaarten) {
   }
 }
 
-void tekenModal(String tekst, float xPositie, float yPositie, float modalBreedte, float modalHoogte)
+void tekenModal(String tekst, String terugknop, float xPositie, float yPositie, float modalBreedte, float modalHoogte)
 {
   noStroke();
   fill(BLACK);
@@ -191,11 +191,7 @@ void tekenModal(String tekst, float xPositie, float yPositie, float modalBreedte
   text(tekst, xPositie + modalBreedte / 2, yPositie + MARGE);
   line(xPositie + MARGE, yPositie + TEKSTGROOTTE_20 * 2, xPositie + modalBreedte - MARGE, yPositie + TEKSTGROOTTE_20 * 2);
   float terugKnopHoogte = modalHoogte / 8;
-  definieerKnop("Terug", schermBreedte / 2, schermHoogte - terugKnopHoogte, modalBreedte, terugKnopHoogte);
-}
-
-void driehoek(float xPositie, float yPositie, float breedte, float hoogte) {
-  triangle(xPositie, yPositie + hoogte, xPositie + (breedte / 2), yPositie, xPositie + breedte, yPositie + hoogte);
+  definieerKnop(terugknop, schermBreedte / 2, schermHoogte - terugKnopHoogte, modalBreedte, terugKnopHoogte);
 }
 
 void tekenKnop(String knopTekst, float xPositie, float yPositie, float knopBreedte, float knopHoogte)
@@ -219,4 +215,9 @@ void tekenKnop(String knopTekst, float xPositie, float yPositie, float knopBreed
   noFill();
   strokeWeight(2);
   rect(xPositie - knopBreedte / 2 + rectMarge, yPositie - knopHoogte / 2 + rectMarge, knopBreedte - MARGE, knopHoogte - MARGE, rectMarge);
+}
+
+
+void driehoek(float xPositie, float yPositie, float breedte, float hoogte) {
+  triangle(xPositie, yPositie + hoogte, xPositie + (breedte / 2), yPositie, xPositie + breedte, yPositie + hoogte);
 }

@@ -25,18 +25,24 @@ void mouseClicked()
   // Scherm Game
   else if (scherm == 2)
   {
-    float rectX = schermBreedte / 2;
-    float rectY = schermHoogte;
-    float rectBreedte = schermBreedte / 2;
-    float rectHoogte = (schermHoogte - MENUHOOGTE) * 0.8;
+    float knopMenuHoogte = (MENUHOOGTE - MARGE * 3) / 2;
+    float knopMenuBreedte = knopMenuHoogte * 4;
+    float knopMenuX = MARGE * 2;
+    float knopMenuY = MARGE + knopMenuHoogte;
+    float knopStoppenBreedte = schermBreedte / 2;
+    float knopStoppenHoogte = (schermHoogte - MENUHOOGTE) * 0.8;
+    float knopStoppenX = schermBreedte / 2;
+    float knopStoppenY = schermHoogte;
     if(aanHetSpelen)
     {
       geselecteerdePosities = coordinatenBijBordpositie(aangekliktePositie());
-      if(muisBovenRect(MARGE * 2, MARGE * 2, (MENUHOOGTE - MARGE * 3) / 2 * 4, (MENUHOOGTE - MARGE * 4) / 2))
+      if(muisBovenRect(knopMenuX, knopMenuY, knopMenuBreedte, knopMenuHoogte))
         aanHetSpelen = false;
+      else if(muisBovenRect(knopMenuX + MARGE + knopMenuBreedte, knopMenuY, knopMenuBreedte, knopMenuHoogte))
+        geefHint();
     }
-    else if(hoverTerug(rectX, rectY, rectBreedte, rectHoogte))
-      scherm = 0;
+    else if(hoverTerug(knopStoppenX, knopStoppenY, knopStoppenBreedte, knopStoppenHoogte))
+      aanHetSpelen = true;
   }
   
   // Scherm Verhaal of Scherm Tutorial

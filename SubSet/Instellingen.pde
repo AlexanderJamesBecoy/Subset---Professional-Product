@@ -1,6 +1,6 @@
 String[] eigenschappen = {"123", "rgb", "red"};
-int schermBreedte = 1280;
-int schermHoogte = 800;
+int schermBreedte = 800;
+int schermHoogte = 600;
 final float MARGE = 0.015625 * schermBreedte;
 final float MENUHOOGTE = 0.26666666666 * schermHoogte;
 
