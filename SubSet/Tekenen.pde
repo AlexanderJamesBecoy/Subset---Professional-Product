@@ -21,20 +21,31 @@ void tekenMenu() {
   float knopBreedte = knopHoogte * 4;
   float knopX = MARGE * 2;
   float knopY = MARGE + knopHoogte;
-  String[] menuBarStrings = {"Sets gevonden", "Score"};
+  String[] menuBarStrings = {"Sets gevonden", "Score", "Speler 1", "Speler 2"};
   textSize(TEKSTGROOTTE_16);
-  for (int menuBarIndex = 0; menuBarIndex < menuBarStrings.length; menuBarIndex++)
+  for (int menuBarIndex = 0; menuBarIndex < 2; menuBarIndex++)
   {
+    int tweeSpelers = 0;
+    if(scherm == 3)
+      tweeSpelers = 2;
     noFill();
     rect(schermBreedte - menuMarge, menuMarge + menuBarHoogte * menuBarIndex, -menuBarBreedte, menuBarHoogte, menuMarge);
     fill(WHITE);
     textAlign(RIGHT, CENTER);
-    text(menuBarStrings[menuBarIndex], schermBreedte - menuMarge * 2 - menuBarBreedte, menuMarge + menuBarHoogte * menuBarIndex + menuBarHoogte / 2);
+    text(menuBarStrings[menuBarIndex + tweeSpelers], schermBreedte - menuMarge * 2 - menuBarBreedte, menuMarge + menuBarHoogte * menuBarIndex + menuBarHoogte / 2);
   }
   float puntenWaardenX = schermBreedte - menuBarBreedte / 2 - menuMarge;
   textAlign(CENTER, CENTER);
-  text(speler1_SetsGevonden, puntenWaardenX, menuMarge + menuBarHoogte / 2);
-  text(speler1_Score, puntenWaardenX, menuMarge + menuBarHoogte + menuBarHoogte / 2);
+  if(scherm == 3)
+  {
+    text(speler1_Score, puntenWaardenX, menuMarge + menuBarHoogte / 2);
+    text(speler2_Score, puntenWaardenX, menuMarge + menuBarHoogte + menuBarHoogte / 2);
+  }
+  else
+  {
+    text(setsGevonden, puntenWaardenX, menuMarge + menuBarHoogte / 2);
+    text(speler1_Score, puntenWaardenX, menuMarge + menuBarHoogte + menuBarHoogte / 2);
+  }
   menuTekst(menuNotificatie, knopX + MARGE, knopX);
   pauzeKnop(knopX, knopY, knopBreedte, knopHoogte);
   hintKnop(knopX + MARGE + knopBreedte, knopY, knopBreedte, knopHoogte);
@@ -72,6 +83,34 @@ void menuPauzeModal()
   tekenKnop("Verder spelen", schermBreedte / 2, rectY + knopHoogte + MARGE * 2, knopBreedte, knopHoogte);
   tekenKnop("Opnieuw spelen", schermBreedte / 2, rectY + knopHoogte * 2 + MARGE * 2, knopBreedte, knopHoogte);
   tekenKnop("Stoppen", schermBreedte / 2, rectY + knopHoogte * 3 + MARGE * 2, knopBreedte, knopHoogte);
+}
+
+void pauzeKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
+{
+  menuKnopAchtergrond(xPositie, yPositie, knopBreedte, knopHoogte);
+  if (muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte) && aanHetSpelen)
+  {
+    noFill();
+    stroke(YELLOW);
+    strokeWeight(2);
+    rect(xPositie, yPositie, knopBreedte, knopHoogte, MARGE / 2);
+    fill(YELLOW);
+  }
+  text("Spel pauzeren", xPositie + knopBreedte / 2, yPositie + knopHoogte / 2);
+}
+
+void hintKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
+{
+  menuKnopAchtergrond(xPositie, yPositie, knopBreedte, knopHoogte);
+  if ((muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte) || hintGegeven) && aanHetSpelen)
+  {
+    noFill();
+    stroke(YELLOW);
+    strokeWeight(2);
+    rect(xPositie, yPositie, knopBreedte, knopHoogte, MARGE / 2);
+    fill(YELLOW);
+  }
+  text("Geef me een hint", xPositie + knopBreedte / 2, yPositie + knopHoogte / 2);
 }
 
 void tekenKaart(String kaart, int bordpositie) {
@@ -152,7 +191,9 @@ void tekenKaart(String kaart, int bordpositie) {
 }
 
 void tekenStapelKaarten(int nGedekteKaarten) {
-
+  boolean genoegKaarten = false;
+  if((scherm == 2 && openKaarten.length == 12) || (scherm == 2 && openKaarten.length == 15))
+    genoegKaarten = true;
   float kaartX = schermBreedte / 4 * 3;
   float kaartY = schermHoogte / 2;
   noStroke();
@@ -164,7 +205,7 @@ void tekenStapelKaarten(int nGedekteKaarten) {
   text(nGedekteKaarten, kaartX + BREEDTEKAART / 2, kaartY + HOOGTEKAART + TEKSTGROOTTE_20);
   if (nGedekteKaarten > 0)
   {
-    if(muisBovenRect(kaartX, kaartY - nGedekteKaarten * 2, BREEDTEKAART, HOOGTEKAART + 2 * nGedekteKaarten) && aanHetSpelen)
+    if(muisBovenRect(kaartX, kaartY - nGedekteKaarten * 2, BREEDTEKAART, HOOGTEKAART + 2 * nGedekteKaarten) && aanHetSpelen && !genoegKaarten)
     {
       stroke(YELLOW);
       strokeWeight(4);

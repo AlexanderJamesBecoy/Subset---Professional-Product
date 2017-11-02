@@ -10,20 +10,18 @@ int muisOverKaart = -1;
 boolean aanHetSpelen = false;
 boolean hintGegeven = false;
 
+int setsGevonden = 0;
 int speler1_Score = 0;
-int speler1_SetsGevonden = 0;
 int speler2_Score = 0;
-int speler2_SetsGevonden = 0;
 boolean speler1Beurt = true;
 
 void initieerSubSet()
 {
   aanHetSpelen = true;
   menuNotificatie = "";
+  setsGevonden = 0;
   speler1_Score = 0;
-  speler1_SetsGevonden = 0;
   speler2_Score = 0;
-  speler2_SetsGevonden = 0;
   geselecteerdePosities = resetGeselecteerdePosities();
   boolean vierEigenschappen = false;
   if (scherm == 2 || scherm == 3)
@@ -69,7 +67,7 @@ void speelSubSet()
         String[] kandidaatset = kandidaatsetOmzetten(geselecteerdePosities);
         if (isSet(kandidaatset, false))
         {
-          speler1_SetsGevonden++;
+          setsGevonden++;
           scoreBepalen(kandidaatset);
           openKaarten = verwijderOpenKaarten(kandidaatset);
           menuNotificatie = "SET!";

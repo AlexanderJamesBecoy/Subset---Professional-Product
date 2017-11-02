@@ -51,6 +51,8 @@ void mouseClicked()
     float knopPauzeHoogte = knopStoppenHoogte * 2;
     float knopPauzeBreedte = knopStoppenBreedte - MARGE * 2;
     float knopPauzeY = (MENUHOOGTE + MARGE / 2) + knopPauzeHoogte + MARGE * 2;
+    float kaartX = schermBreedte / 4 * 3;
+    float kaartY = schermHoogte / 2; 
     if (nSetsOpTafel(vierEigenschappen) > 0)
     {
       if (aanHetSpelen)
@@ -59,10 +61,22 @@ void mouseClicked()
         if (muisBovenRect(knopMenuX, knopMenuY, knopMenuBreedte, knopMenuHoogte))
           aanHetSpelen = false;
         else if (muisBovenRect(knopMenuX + MARGE + knopMenuBreedte, knopMenuY, knopMenuBreedte, knopMenuHoogte) && !hintGegeven)
+        {
           if (scherm == 4)
             geefHint(true);
           else
             geefHint(false);
+        } else if (muisBovenRect(kaartX, kaartY - nGedekteKaarten * 2, BREEDTEKAART, HOOGTEKAART + 2 * nGedekteKaarten))
+        {
+          if ((scherm == 2 && openKaarten.length < 12) || (scherm == 4 && openKaarten.length < 15))
+          {
+            for (int kaart = 0; kaart < 3; kaart++)
+            {
+              openKaarten = append(openKaarten, gedekteKaarten[nGedekteKaarten - 1]);
+              nGedekteKaarten--;
+            }
+          }
+        }
       } else if (hoverSpelKnop(knopX, knopPauzeY, knopPauzeBreedte, knopPauzeHoogte))
         aanHetSpelen = true;
       else if (hoverSpelKnop(knopX, knopPauzeY + knopPauzeHoogte, knopPauzeBreedte, knopPauzeHoogte))

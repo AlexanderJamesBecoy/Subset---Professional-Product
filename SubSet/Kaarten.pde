@@ -174,7 +174,11 @@ String[] verwijderOpenKaarten(String[] gekozenSet)
               nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
               nGedekteKaarten--;
             }
-          }
+          } else
+            {
+              nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
+              nGedekteKaarten--;
+            }
         } else
         {
           nieuweOpenKaarten[kaartIndex] = "zzzz";

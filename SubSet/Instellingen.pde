@@ -24,31 +24,3 @@ final color BLUE = #0000FF;
 final color WHITE = #FFFFFF;
 final color kleur_tafelDek1 = #4F7942;
 final color kleur_tafelDek2 = #556B2F;
-
-void pauzeKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
-{
-  menuKnopAchtergrond(xPositie, yPositie, knopBreedte, knopHoogte);
-  if (muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte) && aanHetSpelen)
-  {
-    noFill();
-    stroke(YELLOW);
-    strokeWeight(2);
-    rect(xPositie, yPositie, knopBreedte, knopHoogte, MARGE / 2);
-    fill(YELLOW);
-  }
-  text("Spel pauzeren", xPositie + knopBreedte / 2, yPositie + knopHoogte / 2);
-}
-
-void hintKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
-{
-  menuKnopAchtergrond(xPositie, yPositie, knopBreedte, knopHoogte);
-  if ((muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte) || hintGegeven) && aanHetSpelen)
-  {
-    noFill();
-    stroke(YELLOW);
-    strokeWeight(2);
-    rect(xPositie, yPositie, knopBreedte, knopHoogte, MARGE / 2);
-    fill(YELLOW);
-  }
-  text("Geef me een hint", xPositie + knopBreedte / 2, yPositie + knopHoogte / 2);
-}
