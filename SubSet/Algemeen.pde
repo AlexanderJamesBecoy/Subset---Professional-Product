@@ -49,5 +49,5 @@ void scoreBepalen(String[] kandidaatset)
   {
     nieuweScore = nieuweScore - 3;
   }
-  score += nieuweScore;
+  speler1_Score += nieuweScore;
 }

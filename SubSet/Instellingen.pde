@@ -1,17 +1,13 @@
-String[] eigenschappen = {"123", "rgb", "red"};
+String[] eigenschappen = {"123", "rgb", "red", "lgv"};
 int schermBreedte = 800;
 int schermHoogte = 600;
 final float MARGE = 0.015625 * schermBreedte;
 final float MENUHOOGTE = 0.26666666666 * schermHoogte;
 
-void settings()
-{
-  size(schermBreedte, schermHoogte);
-}
-
 final float TEKSTGROOTTE_12 = 0.01875 * schermBreedte;
 final float TEKSTGROOTTE_16 = 0.025 * schermBreedte;
 final float TEKSTGROOTTE_20 = 0.03125 * schermBreedte;
+final float TEKSTGROOTTE_48 = 0.075 * schermBreedte;
 final float TEKSTGROOTTE_TITEL = 0.225 * schermHoogte;
 
 final float HOOGTEKAART = (schermHoogte - MENUHOOGTE - MARGE * 5) / 3;
@@ -29,46 +25,32 @@ final color WHITE = #FFFFFF;
 final color kleur_tafelDek1 = #4F7942;
 final color kleur_tafelDek2 = #556B2F;
 
-void pauzeKnop(float xPositie, float yPositie, float knopLengte)
+void pauzeKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
 {
-  stroke(WHITE);
-  strokeWeight(2);
-  fill(BLACK);
-  float rectBreedte = knopLengte * 4;
-  rect(xPositie, yPositie, rectBreedte, knopLengte, MARGE / 2);
-  fill(WHITE);
-  if (muisBovenRect(xPositie, yPositie, rectBreedte, knopLengte))
+  menuKnopAchtergrond(xPositie, yPositie, knopBreedte, knopHoogte);
+  if (muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte))
   {
     noFill();
     stroke(YELLOW);
     strokeWeight(2);
-    rect(xPositie, yPositie, rectBreedte, knopLengte, MARGE / 2);
+    rect(xPositie, yPositie, knopBreedte, knopHoogte, MARGE / 2);
     fill(YELLOW);
   }
-  textSize(TEKSTGROOTTE_16);
-  textAlign(CENTER, CENTER);
-  text("Spel pauzeren", xPositie + rectBreedte / 2, yPositie + knopLengte / 2);
+  text("Spel pauzeren", xPositie + knopBreedte / 2, yPositie + knopHoogte / 2);
 }
 
-void hintKnop(float xPositie, float yPositie, float knopLengte)
+void hintKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
 {
-  stroke(WHITE);
-  strokeWeight(2);
-  fill(BLACK);
-  float rectBreedte = knopLengte * 4;
-  rect(xPositie, yPositie, rectBreedte, knopLengte, MARGE / 2);
-  fill(WHITE);
-  if (muisBovenRect(xPositie, yPositie, rectBreedte, knopLengte))
+  menuKnopAchtergrond(xPositie, yPositie, knopBreedte, knopHoogte);
+  if (muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte) || hintGegeven)
   {
     noFill();
     stroke(YELLOW);
     strokeWeight(2);
-    rect(xPositie, yPositie, rectBreedte, knopLengte, MARGE / 2);
+    rect(xPositie, yPositie, knopBreedte, knopHoogte, MARGE / 2);
     fill(YELLOW);
   }
-  textSize(TEKSTGROOTTE_16);
-  textAlign(CENTER, CENTER);
-  text("Geef me een hint", xPositie + rectBreedte / 2, yPositie + knopLengte / 2);
+  text("Geef me een hint", xPositie + knopBreedte / 2, yPositie + knopHoogte / 2);
 }
 
 void definieerKnop(String soortKnop, float xPositie, float yPositie, float knopBreedte, float knopHoogte)

@@ -1,17 +1,37 @@
 void keyPressed()
 {
-  if(key == 'a')
+  if (key == 'a')
   {
     nGedekteKaarten = 0;
   }
-  if(key == 's')
+  if (key == 's')
   {
-    schermBreedte = 1280;
-    schermHoogte = 960;
+    openKaarten = new String[12];
+    gedekteKaarten = kaartenSchudden(genereerKaarten(eigenschappen, false));
+    while (nSetsOpTafel() == 0)
+    {
+      geschudKaarten = kaartenSchudden(gedekteKaarten);
+      nGedekteKaarten = gedekteKaarten.length;
+      for (int kaartOpen = 0; kaartOpen < openKaarten.length; kaartOpen++)
+      {
+        openKaarten[kaartOpen] = geschudKaarten[geschudKaarten.length - kaartOpen - 1];
+        nGedekteKaarten = nGedekteKaarten - 1;
+      }
+    }
   }
-  if(key == 'd')
+  if (key == 'd')
   {
-    schermBreedte = 640;
-    schermHoogte = 480;
+    openKaarten = new String[9];
+    gedekteKaarten = kaartenSchudden(genereerKaarten(eigenschappen, false));
+    while (nSetsOpTafel() == 0)
+    {
+      geschudKaarten = kaartenSchudden(gedekteKaarten);
+      nGedekteKaarten = gedekteKaarten.length;
+      for (int kaartOpen = 0; kaartOpen < openKaarten.length; kaartOpen++)
+      {
+        openKaarten[kaartOpen] = geschudKaarten[geschudKaarten.length - kaartOpen - 1];
+        nGedekteKaarten = nGedekteKaarten - 1;
+      }
+    }
   }
 }

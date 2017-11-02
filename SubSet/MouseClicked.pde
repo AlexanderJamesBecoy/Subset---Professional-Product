@@ -3,22 +3,41 @@ void mouseClicked()
   // Scherm Menu
   if (scherm == 0)
   {
-    if (hoverSpeel())
+    if (hoverMenuKnop1())
+    {
+      scherm = 1;
+      //initieerSubSet_1P();
+    }
+    if(hoverMenuKnop2())
+    {
+      scherm = 5;
+    }
+    if(hoverMenuKnop3())
+    {
+      scherm = 6;
+    }
+    if (hoverMenuKnop4())
+    {
+      exit();
+    }
+  }
+  
+  // Scherm Spelvarianten
+  else if (scherm == 1)
+  {
+    if (hoverMenuKnop1())
     {
       scherm = 2;
       initieerSubSet_1P();
     }
-    if(hoverVerhaal())
-    {
-      scherm = 3;
-    }
-    if(hoverTutorial())
+    else if (hoverMenuKnop3())
     {
       scherm = 4;
+      initieerSet_1P();
     }
-    if (hoverStoppen())
+    else if (hoverMenuKnop4())
     {
-      exit();
+      scherm = 0;
     }
   }
   
@@ -33,22 +52,30 @@ void mouseClicked()
     float knopStoppenHoogte = (schermHoogte - MENUHOOGTE) * 0.8;
     float knopStoppenX = schermBreedte / 2;
     float knopStoppenY = schermHoogte;
-    if(aanHetSpelen)
+    if(nSetsOpTafel() > 0)
     {
-      geselecteerdePosities = coordinatenBijBordpositie(aangekliktePositie());
-      if(muisBovenRect(knopMenuX, knopMenuY, knopMenuBreedte, knopMenuHoogte))
-        aanHetSpelen = false;
-      else if(muisBovenRect(knopMenuX + MARGE + knopMenuBreedte, knopMenuY, knopMenuBreedte, knopMenuHoogte))
-        geefHint();
+      if(aanHetSpelen)
+      {
+        geselecteerdePosities = coordinatenBijBordpositie(aangekliktePositie());
+        if(muisBovenRect(knopMenuX, knopMenuY, knopMenuBreedte, knopMenuHoogte))
+          aanHetSpelen = false;
+        else if(muisBovenRect(knopMenuX + MARGE + knopMenuBreedte, knopMenuY, knopMenuBreedte, knopMenuHoogte) && !hintGegeven)
+          geefHint();
+      }
+      else if(hoverTerug(knopStoppenX, knopStoppenY, knopStoppenBreedte, knopStoppenHoogte))
+        aanHetSpelen = true;
     }
-    else if(hoverTerug(knopStoppenX, knopStoppenY, knopStoppenBreedte, knopStoppenHoogte))
-      aanHetSpelen = true;
+    else
+    {
+      if(hoverTerug(knopStoppenX, knopStoppenY, knopStoppenBreedte, knopStoppenHoogte))
+        scherm = 0;
+    }
   }
   
   // Scherm Verhaal of Scherm Tutorial
-  else if(scherm == 3 || scherm == 4)
+  else if(scherm == 5 || scherm == 6)
   {
-    if(hoverTerug(schermBreedte / 2, schermHoogte * 0.8, MENU_KNOPBREEDTE, MENU_KNOPHOOGTE))
+    if(hoverTerug(knoppen[4][0], knoppen[4][1], knoppen[4][2], knoppen[4][3]))
       scherm = 0;
   }
 }

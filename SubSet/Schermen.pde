@@ -7,12 +7,13 @@ scherm 4 = Tutorial
 ============================*/
 int scherm = 0;
 
-String[] stringKnoppen = {"Speel", "\"Behind The Game\"", "Hoe Speel Je?", "Stoppen", "Terug"};
+String[] stringKnoppen = {"Speel", "\"Behind The Game\"", "Hoe Speel Je?", "Stoppen", "Terug", "Één-speler Subset", "Twee-speler Subset", "Één-speler Set", "Terug"};
 float[][] knoppen = {
   {schermBreedte / 2, schermHoogte / 2, MENU_KNOPBREEDTE, MENU_KNOPHOOGTE},
   {schermBreedte / 2, schermHoogte / 2 + MARGE + MENU_KNOPHOOGTE, MENU_KNOPBREEDTE, MENU_KNOPHOOGTE},
   {schermBreedte / 2, schermHoogte / 2 + MARGE * 2 + MENU_KNOPHOOGTE * 2, MENU_KNOPBREEDTE, MENU_KNOPHOOGTE},
-  {schermBreedte / 2, schermHoogte / 2 + MARGE * 3 + MENU_KNOPHOOGTE * 3, MENU_KNOPBREEDTE, MENU_KNOPHOOGTE}
+  {schermBreedte / 2, schermHoogte / 2 + MARGE * 3 + MENU_KNOPHOOGTE * 3, MENU_KNOPBREEDTE, MENU_KNOPHOOGTE},
+  {schermBreedte / 2, schermHoogte * 0.8, schermBreedte / 3, schermHoogte / 10}
 };
 
 void beeldMenu()
@@ -28,6 +29,19 @@ void beeldMenu()
   }
 }
 
+void beeldSpelVarianten()
+{
+  tekenTafelDek();
+  textSize(TEKSTGROOTTE_48);
+  textAlign(CENTER, CENTER);
+  fill(WHITE);
+  text("Kies een spelvariant", schermBreedte / 2, MENUHOOGTE);
+  for(int knopIndex = 0; knopIndex < 4; knopIndex++)
+  {
+    tekenKnop(stringKnoppen[knopIndex + 5], knoppen[knopIndex][0], knoppen[knopIndex][1], knoppen[knopIndex][2], knoppen[knopIndex][3]);
+  }
+}
+
 void beeldVerhaal()
 {
   String[] verhaalLijnen = loadStrings("savefiles/verhaal.txt");
@@ -39,7 +53,7 @@ void beeldVerhaal()
   {
     text(verhaalLijnen[verhaalLijnIndex], schermBreedte / 2, MENUHOOGTE + TEKSTGROOTTE_20 * verhaalLijnIndex);
   }
-  tekenKnop("Terug", schermBreedte / 2, schermHoogte * 0.8, MENU_KNOPBREEDTE, MENU_KNOPHOOGTE);
+  definieerKnop("Terug", knoppen[4][0], knoppen[4][1], knoppen[4][2], knoppen[4][3]);
 }
 
 void beeldTutorial()
@@ -53,7 +67,5 @@ void beeldTutorial()
   {
     text(verhaalLijnen[verhaalLijnIndex], schermBreedte / 2, 40 + TEKSTGROOTTE_20 * verhaalLijnIndex);
   }
-  float knopBreedte = schermBreedte / 3;
-  float knopHoogte = schermHoogte / 10;
-  definieerKnop("Terug", schermBreedte / 2, schermHoogte * 0.8, knopBreedte, knopHoogte);
+  definieerKnop("Terug", knoppen[4][0], knoppen[4][1], knoppen[4][2], knoppen[4][3]);
 }
