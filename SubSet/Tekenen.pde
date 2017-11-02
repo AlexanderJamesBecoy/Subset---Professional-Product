@@ -66,16 +66,21 @@ void menuPauzeModal()
   float rectHoogte = (schermHoogte - MENUHOOGTE) * 0.8;
   float rectX = rectBreedte - rectBreedte / 2;
   float rectY = MENUHOOGTE + rectMarge;
-  tekenModal("Pauze", "Terugspelen", rectX, rectY, rectBreedte, rectHoogte);
+  float knopBreedte = rectBreedte - MARGE * 2;
+  float knopHoogte = rectHoogte / 4;
+  tekenModal("Pauze", rectX, rectY, rectBreedte, rectHoogte);
+  tekenKnop("Verder spelen", schermBreedte / 2, rectY + knopHoogte + MARGE * 2, knopBreedte, knopHoogte);
+  tekenKnop("Opnieuw spelen", schermBreedte / 2, rectY + knopHoogte * 2 + MARGE * 2, knopBreedte, knopHoogte);
+  tekenKnop("Stoppen", schermBreedte / 2, rectY + knopHoogte * 3 + MARGE * 2, knopBreedte, knopHoogte);
 }
 
 void tekenKaart(String kaart, int bordpositie) {
-  if (kaart != "zzz" || kaart != "zzzz")
+  if (kaart.charAt(0) != 'z')
   {
-    boolean vierEigenschappen = kaart.length() == 4;
+    boolean vierEigenschappen = (kaart.length() == 4);
     int kaartDeler = openKaarten.length / 3;
     float breedteMarge = MARGE * 2 * ((bordpositie % kaartDeler) + 1);
-    float kaartX = MENUHOOGTE + breedteMarge * (3 / kaartDeler);
+    float kaartX = MENUHOOGTE * 0.75 + breedteMarge * (3 / kaartDeler);
     float kaartY = MENUHOOGTE;
     kaartX += breedteMarge + BREEDTEKAART * (bordpositie % kaartDeler);
     kaartY += MARGE * ((bordpositie / kaartDeler) + 1) + HOOGTEKAART * (bordpositie / kaartDeler);
@@ -109,15 +114,18 @@ void tekenKaart(String kaart, int bordpositie) {
       switch(kaart.charAt(2))
       {
       case 'r':
-        if (vierEigenschappen)  gestreept(kaart.charAt(3), kaart.charAt(2), aantal, kaartX, kaartY, figuurBreedte, figuurHoogte, figuurMarge);
+        if (vierEigenschappen)
+          gestreept(kaart.charAt(3), kaart.charAt(2), aantal, kaartX, kaartY, figuurBreedte, figuurHoogte, figuurMarge);
         rect(kaartX + kaartenMarge, kaartY + figuurHoogte * aantal + MARGE * aantal + figuurMarge, figuurBreedte, figuurHoogte);
         break;
       case 'e':
-        if (vierEigenschappen)  gestreept(kaart.charAt(3), kaart.charAt(2), aantal, kaartX, kaartY, figuurBreedte, figuurHoogte, figuurMarge);
+        if (vierEigenschappen)
+          gestreept(kaart.charAt(3), kaart.charAt(2), aantal, kaartX, kaartY, figuurBreedte, figuurHoogte, figuurMarge);
         ellipse(kaartX + (BREEDTEKAART / 2), kaartY + (figuurHoogte / 2) + + figuurHoogte * aantal + MARGE * aantal + figuurMarge, figuurBreedte, figuurHoogte);
         break;
       case 'd':
-        if (vierEigenschappen)  gestreept(kaart.charAt(3), kaart.charAt(2), aantal, kaartX, kaartY, figuurBreedte, figuurHoogte, figuurMarge);
+        if (vierEigenschappen)
+          gestreept(kaart.charAt(3), kaart.charAt(2), aantal, kaartX, kaartY, figuurBreedte, figuurHoogte, figuurMarge);
         driehoek(kaartX + kaartenMarge, kaartY + (figuurHoogte * aantal) + (MARGE * aantal) + figuurMarge, figuurBreedte, figuurHoogte);
         break;
       }
@@ -156,6 +164,13 @@ void tekenStapelKaarten(int nGedekteKaarten) {
   text(nGedekteKaarten, kaartX + BREEDTEKAART / 2, kaartY + HOOGTEKAART + TEKSTGROOTTE_20);
   if (nGedekteKaarten > 0)
   {
+    if(muisBovenRect(kaartX, kaartY - nGedekteKaarten * 2, BREEDTEKAART, HOOGTEKAART + 2 * nGedekteKaarten) && aanHetSpelen)
+    {
+      stroke(YELLOW);
+      strokeWeight(4);
+      noFill();
+      rect(kaartX, kaartY - nGedekteKaarten * 2, BREEDTEKAART, HOOGTEKAART + 2 * nGedekteKaarten, MARGE / 2);
+    }
     for (int gedekteKaart = 0; gedekteKaart < nGedekteKaarten; gedekteKaart++)
     {
       stroke(BLACK);
@@ -177,7 +192,7 @@ void tekenStapelKaarten(int nGedekteKaarten) {
   }
 }
 
-void tekenModal(String tekst, String terugknop, float xPositie, float yPositie, float modalBreedte, float modalHoogte)
+void tekenModal(String tekst, float xPositie, float yPositie, float modalBreedte, float modalHoogte)
 {
   noStroke();
   fill(BLACK);
@@ -191,8 +206,6 @@ void tekenModal(String tekst, String terugknop, float xPositie, float yPositie, 
   textAlign(CENTER, TOP);
   text(tekst, xPositie + modalBreedte / 2, yPositie + MARGE);
   line(xPositie + MARGE, yPositie + TEKSTGROOTTE_20 * 2, xPositie + modalBreedte - MARGE, yPositie + TEKSTGROOTTE_20 * 2);
-  float terugKnopHoogte = modalHoogte / 8;
-  tekenKnop(terugknop, schermBreedte / 2, schermHoogte - terugKnopHoogte, modalBreedte, terugKnopHoogte);
 }
 
 void tekenKnop(String knopTekst, float xPositie, float yPositie, float knopBreedte, float knopHoogte)
@@ -260,20 +273,19 @@ void gestreept(char vulling, char vorm, int aantal, float xPositie, float yPosit
   switch(vulling)
   {
   case 'r':
-    maakStreepjes(RED, vorm, xPositie + MARGE / 2, yPositie + hoogte * aantal + MARGE * aantal + figuurMarge, breedte, hoogte);
+    maakStreepjes(vorm, xPositie + MARGE / 2, yPositie + hoogte * aantal + MARGE * aantal + figuurMarge, breedte, hoogte);
     break;
   case 'g':
-    maakStreepjes(GREEN, vorm, xPositie + MARGE / 2, yPositie + hoogte * aantal + MARGE * aantal + figuurMarge, breedte, hoogte);
+    maakStreepjes(vorm, xPositie + MARGE / 2, yPositie + hoogte * aantal + MARGE * aantal + figuurMarge, breedte, hoogte);
     break;
   case 'b':
-    maakStreepjes(BLUE, vorm, xPositie + MARGE / 2, yPositie + hoogte * aantal + MARGE * aantal + figuurMarge, breedte, hoogte);
+    maakStreepjes(vorm, xPositie + MARGE / 2, yPositie + hoogte * aantal + MARGE * aantal + figuurMarge, breedte, hoogte);
     break;
   }
 }
 
-void maakStreepjes(color kleur, char vorm, float xPositie, float yPositie, float breedte, float hoogte)
+void maakStreepjes(char vorm, float xPositie, float yPositie, float breedte, float hoogte)
 {
-  stroke(kleur);
   strokeWeight(2);
   noFill();
   float streepMarge = hoogte / 4.0;

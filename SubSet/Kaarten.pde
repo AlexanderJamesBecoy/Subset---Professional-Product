@@ -30,7 +30,6 @@ String[] genereerKaarten(String[] kaarten_eigenschappen, boolean isSet)
       }
     }
   }
-  printArray(nieuweKaarten);
   return nieuweKaarten;
 }
 
@@ -53,41 +52,40 @@ String pakKaartVanStapel()
   return kaartUitStapel;
 }
 
-int nSetsOpTafel()
+int nSetsOpTafel(boolean vierEigenschappen)
 {
   int aantalMogelijkeSets = 0;
-  if (scherm == 2)
-    for (int openKaartIndex_1 = 0; openKaartIndex_1 < openKaarten.length; openKaartIndex_1++)
+  for (int openKaartIndex_1 = 0; openKaartIndex_1 < openKaarten.length; openKaartIndex_1++)
+  {
+    String[] kaartenCombinaties = new String[3];
+    kaartenCombinaties[0] = openKaarten[openKaartIndex_1];
+    for (int openKaartIndex_2 = 0; openKaartIndex_2 < openKaarten.length; openKaartIndex_2++)
     {
-      String[] kaartenCombinaties = new String[3];
-      kaartenCombinaties[0] = openKaarten[openKaartIndex_1];
-      for (int openKaartIndex_2 = 0; openKaartIndex_2 < openKaarten.length; openKaartIndex_2++)
-      {
-        if (kaartenCombinaties[0] != openKaarten[openKaartIndex_2]) {
-          kaartenCombinaties[1] = openKaarten[openKaartIndex_2];
-          for (int openKaartIndex_3 = 0; openKaartIndex_3 < openKaarten.length; openKaartIndex_3++)
-          {
-            if (kaartenCombinaties[1] != openKaarten[openKaartIndex_3]) {
-              kaartenCombinaties[2] = openKaarten[openKaartIndex_3];
-              if (isSet(kaartenCombinaties))
-              {
-                aantalMogelijkeSets++;
-              }
-            } else {
-              openKaartIndex_3 = openKaarten.length;
+      if (kaartenCombinaties[0] != openKaarten[openKaartIndex_2]) {
+        kaartenCombinaties[1] = openKaarten[openKaartIndex_2];
+        for (int openKaartIndex_3 = 0; openKaartIndex_3 < openKaarten.length; openKaartIndex_3++)
+        {
+          if (kaartenCombinaties[1] != openKaarten[openKaartIndex_3]) {
+            kaartenCombinaties[2] = openKaarten[openKaartIndex_3];
+            if (isSet(kaartenCombinaties, vierEigenschappen))
+            {
+              aantalMogelijkeSets++;
             }
+          } else {
+            openKaartIndex_3 = openKaarten.length;
           }
-        } else {
-          openKaartIndex_2 = openKaarten.length;
         }
+      } else {
+        openKaartIndex_2 = openKaarten.length;
       }
     }
+  }
   return aantalMogelijkeSets;
 }
 
-void geefHint()
+void geefHint(boolean vierEigenschappen)
 {
-  geselecteerdePosities = resetGeselecteerdePosities(geselecteerdePosities);
+  geselecteerdePosities = resetGeselecteerdePosities();
   speler1_Score -= 5;
   for (int kaart1 = 0; kaart1 < openKaarten.length; kaart1++)
   {
@@ -103,7 +101,7 @@ void geefHint()
           if (openKaarten[kaart2] != openKaarten[kaart3])
           {
             kaartenCombinaties[2] = openKaarten[kaart3];
-            if (isSet(kaartenCombinaties))
+            if (isSet(kaartenCombinaties, vierEigenschappen))
             {
               geselecteerdePosities[0] = kaart1;
               geselecteerdePosities[1] = kaart2;
@@ -117,18 +115,24 @@ void geefHint()
   }
 }
 
-boolean isSet(String[] kandidaatset)
+boolean isSet(String[] kandidaatset, boolean vierEigenschappen)
 {
   char[] aantal = new char[3];
   char[] kleur = new char[3];
   char[] vorm = new char[3];
+  char[] vulling = new char[3];
   for (int kandidaatIndex = 0; kandidaatIndex < kandidaatset.length; kandidaatIndex++)
   {
     aantal[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(0);
     kleur[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(1);
     vorm[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(2);
+    if (vierEigenschappen)
+      vulling[kandidaatIndex] = kandidaatset[kandidaatIndex].charAt(3);
   }
-  return (bekijkVerschil(aantal[0], aantal[1], aantal[2]) && bekijkVerschil(kleur[0], kleur[1], kleur[2]) && bekijkVerschil(vorm[0], vorm[1], vorm[2]));
+  if (vierEigenschappen)
+    return (bekijkVerschil(aantal[0], aantal[1], aantal[2]) && bekijkVerschil(kleur[0], kleur[1], kleur[2]) && bekijkVerschil(vorm[0], vorm[1], vorm[2]) && bekijkVerschil(vulling[0], vulling[1], vulling[2]));
+  else
+    return (bekijkVerschil(aantal[0], aantal[1], aantal[2]) && bekijkVerschil(kleur[0], kleur[1], kleur[2]) && bekijkVerschil(vorm[0], vorm[1], vorm[2]));
 }
 
 String[] kandidaatsetOmzetten(int[] gekozenPosities)
@@ -157,20 +161,49 @@ String[] verwijderOpenKaarten(String[] gekozenSet)
       {
         if (nGedekteKaarten > 0)
         {
-          nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
-          nGedekteKaarten--;
+          if (scherm == 2 || scherm == 3)
+          {
+            if (openKaarten.length > 9)
+            {
+              openKaarten = openKaartenVerschuiven(openKaarten, kandidaatIndex);
+              nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
+              nGedekteKaarten--;
+              printArray(openKaarten);
+            } else
+            {
+              nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
+              nGedekteKaarten--;
+            }
+          }
         } else
         {
-          nieuweOpenKaarten[kaartIndex] = "zzz";
+          nieuweOpenKaarten[kaartIndex] = "zzzz";
         }
       }
     }
   }
-  geselecteerdePosities = resetGeselecteerdePosities(geselecteerdePosities);
+  geselecteerdePosities = resetGeselecteerdePosities();
   return nieuweOpenKaarten;
 }
 
-int[] resetGeselecteerdePosities(int[] geselecteerdePosities)
+String[] openKaartenVerschuiven(String[] kaarten, int gekozenKaartIndex)
+{
+  String[] verschovenKaarten = new String[kaarten.length - 1];
+  String[] gekozenSet = kandidaatsetOmzetten(geselecteerdePosities);
+  int index = 0;
+  for (int kaart = 0; kaart < kaarten.length; kaart++)
+  {
+    if (kaarten[kaart] != gekozenSet[gekozenKaartIndex])
+    {
+      verschovenKaarten[index] = openKaarten[kaart];
+      index++;
+    }
+  }
+  openKaarten = new String[verschovenKaarten.length];
+  return verschovenKaarten;
+}
+
+int[] resetGeselecteerdePosities()
 {
   int[] nieuweArray = new int[geselecteerdePosities.length];
   for (int arrayIndex = 0; arrayIndex < nieuweArray.length; arrayIndex++)
@@ -187,7 +220,7 @@ int aangekliktePositie()
   {
     int kaartDeler = openKaarten.length / 3;
     float breedteMarge = MARGE * 2 * ((kaartIndex % kaartDeler) + 1);
-    float kaartX = MENUHOOGTE + breedteMarge * (3 / kaartDeler);
+    float kaartX = MENUHOOGTE * 0.75 + breedteMarge * (3 / kaartDeler);
     float kaartY = MENUHOOGTE;
     kaartX += breedteMarge + BREEDTEKAART * (kaartIndex % kaartDeler);
     kaartY += MARGE * ((kaartIndex / kaartDeler) + 1) + HOOGTEKAART * (kaartIndex / kaartDeler);

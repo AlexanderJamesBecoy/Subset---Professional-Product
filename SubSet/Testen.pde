@@ -8,7 +8,7 @@ void keyPressed()
   {
     openKaarten = new String[12];
     gedekteKaarten = kaartenSchudden(genereerKaarten(eigenschappen, false));
-    while (nSetsOpTafel() == 0)
+    while (nSetsOpTafel(false) == 0)
     {
       geschudKaarten = kaartenSchudden(gedekteKaarten);
       nGedekteKaarten = gedekteKaarten.length;
@@ -23,7 +23,7 @@ void keyPressed()
   {
     openKaarten = new String[9];
     gedekteKaarten = kaartenSchudden(genereerKaarten(eigenschappen, false));
-    while (nSetsOpTafel() == 0)
+    while (nSetsOpTafel(false) == 0)
     {
       geschudKaarten = kaartenSchudden(gedekteKaarten);
       nGedekteKaarten = gedekteKaarten.length;
@@ -32,6 +32,14 @@ void keyPressed()
         openKaarten[kaartOpen] = geschudKaarten[geschudKaarten.length - kaartOpen - 1];
         nGedekteKaarten = nGedekteKaarten - 1;
       }
+    }
+  }
+  if(key == 'w' && nGedekteKaarten > 0)
+  {
+    for(int kaart = 0; kaart < 3; kaart++)
+    {
+      openKaarten = append(openKaarten, gedekteKaarten[nGedekteKaarten - 1]);
+      nGedekteKaarten--;
     }
   }
 }

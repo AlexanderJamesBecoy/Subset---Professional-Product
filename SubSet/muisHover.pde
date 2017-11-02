@@ -26,7 +26,7 @@ boolean hoverMenuKnop4()
   return muisBovenRect(knopX, knopY, knoppen[3][2], knoppen[3][3]);
 }
 
-boolean hoverTerug(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
+boolean hoverSpelKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
 {
   xPositie = xPositie - knopBreedte / 2;
   yPositie = yPositie - knopHoogte / 2;

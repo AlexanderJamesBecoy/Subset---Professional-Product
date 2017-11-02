@@ -53,7 +53,7 @@ void beeldVerhaal()
   {
     text(verhaalLijnen[verhaalLijnIndex], schermBreedte / 2, MENUHOOGTE + TEKSTGROOTTE_20 * verhaalLijnIndex);
   }
-  definieerKnop("Terug", knoppen[4][0], knoppen[4][1], knoppen[4][2], knoppen[4][3]);
+  tekenKnop("Terug", knoppen[4][0], knoppen[4][1], knoppen[4][2], knoppen[4][3]);
 }
 
 void beeldTutorial()
@@ -67,5 +67,5 @@ void beeldTutorial()
   {
     text(verhaalLijnen[verhaalLijnIndex], schermBreedte / 2, 40 + TEKSTGROOTTE_20 * verhaalLijnIndex);
   }
-  definieerKnop("Terug", knoppen[4][0], knoppen[4][1], knoppen[4][2], knoppen[4][3]);
+  tekenKnop("Terug", knoppen[4][0], knoppen[4][1], knoppen[4][2], knoppen[4][3]);
 }

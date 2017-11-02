@@ -28,7 +28,7 @@ final color kleur_tafelDek2 = #556B2F;
 void pauzeKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
 {
   menuKnopAchtergrond(xPositie, yPositie, knopBreedte, knopHoogte);
-  if (muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte))
+  if (muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte) && aanHetSpelen)
   {
     noFill();
     stroke(YELLOW);
@@ -42,7 +42,7 @@ void pauzeKnop(float xPositie, float yPositie, float knopBreedte, float knopHoog
 void hintKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogte)
 {
   menuKnopAchtergrond(xPositie, yPositie, knopBreedte, knopHoogte);
-  if (muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte) || hintGegeven)
+  if ((muisBovenRect(xPositie, yPositie, knopBreedte, knopHoogte) || hintGegeven) && aanHetSpelen)
   {
     noFill();
     stroke(YELLOW);
@@ -51,9 +51,4 @@ void hintKnop(float xPositie, float yPositie, float knopBreedte, float knopHoogt
     fill(YELLOW);
   }
   text("Geef me een hint", xPositie + knopBreedte / 2, yPositie + knopHoogte / 2);
-}
-
-void definieerKnop(String soortKnop, float xPositie, float yPositie, float knopBreedte, float knopHoogte)
-{
-  tekenKnop(soortKnop, xPositie, yPositie, knopBreedte, knopHoogte);
 }

@@ -13,17 +13,9 @@ void draw()
   if(scherm == 1)
     beeldSpelVarianten();
   
-  /* Speel Één-speler SubSet */
-  if(scherm == 2)
-    speelSubSet_1P();
-    
-  /* Speel Twee-speler SubSet */
-  if(scherm == 3)
-    speelSubSet_1P();
-    
-  /* Speel Één-speler Set */
-  if(scherm == 4)
-    speelSet_1P();
+  /* Spelvarianten spelen */
+  if(scherm == 2 || scherm == 3 || scherm == 4)
+    speelSubSet();
   
   /* Bekijk verhaal achter het spel */
   if(scherm == 5)
