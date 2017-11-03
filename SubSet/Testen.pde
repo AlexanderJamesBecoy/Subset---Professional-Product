@@ -36,10 +36,6 @@ void keyPressed()
   }
   if(key == 'w' && nGedekteKaarten > 0)
   {
-    for(int kaart = 0; kaart < 3; kaart++)
-    {
-      openKaarten = append(openKaarten, gedekteKaarten[nGedekteKaarten - 1]);
-      nGedekteKaarten--;
-    }
+    pakNieuweKaarten();
   }
 }

@@ -1,4 +1,4 @@
-void mouseClicked()
+void mousePressed()
 {
   // Scherm Menu
   if (scherm == 0)
@@ -39,53 +39,32 @@ void mouseClicked()
     boolean vierEigenschappen = false;
     if (scherm == 4)
       vierEigenschappen = true;
-    float knopMenuHoogte = (MENUHOOGTE - MARGE * 3) / 2;
-    float knopMenuBreedte = knopMenuHoogte * 4;
-    float knopMenuX = MARGE * 2;
-    float knopMenuY = MARGE + knopMenuHoogte;
-    float modalHoogte = (schermHoogte - MENUHOOGTE) * 0.8;
-    float knopStoppenBreedte = schermBreedte / 2;
-    float knopStoppenHoogte = modalHoogte / 8;
-    float knopX = knopStoppenBreedte;
-    float knopStoppenY = ((MENUHOOGTE + MARGE / 2) + modalHoogte + MARGE * 2);
-    float knopPauzeHoogte = knopStoppenHoogte * 2;
-    float knopPauzeBreedte = knopStoppenBreedte - MARGE * 2;
-    float knopPauzeY = (MENUHOOGTE + MARGE / 2) + knopPauzeHoogte + MARGE * 2;
-    float kaartX = schermBreedte / 4 * 3;
-    float kaartY = schermHoogte / 2; 
     if (nSetsOpTafel(vierEigenschappen) > 0)
     {
       if (aanHetSpelen)
       {
         geselecteerdePosities = coordinatenBijBordpositie(aangekliktePositie());
-        if (muisBovenRect(knopMenuX, knopMenuY, knopMenuBreedte, knopMenuHoogte))
+        if (hoverPauzeKnop())
           aanHetSpelen = false;
-        else if (muisBovenRect(knopMenuX + MARGE + knopMenuBreedte, knopMenuY, knopMenuBreedte, knopMenuHoogte) && !hintGegeven)
+        else if (hoverHintKnop() && !hintGegeven)
         {
           if (scherm == 4)
             geefHint(true);
           else
             geefHint(false);
-        } else if (muisBovenRect(kaartX, kaartY - nGedekteKaarten * 2, BREEDTEKAART, HOOGTEKAART + 2 * nGedekteKaarten))
+        } else if (hoverPakKaarten())
         {
-          if ((scherm == 2 && openKaarten.length < 12) || (scherm == 4 && openKaarten.length < 15))
-          {
-            for (int kaart = 0; kaart < 3; kaart++)
-            {
-              openKaarten = append(openKaarten, gedekteKaarten[nGedekteKaarten - 1]);
-              nGedekteKaarten--;
-            }
-          }
+          pakNieuweKaarten();
         }
-      } else if (hoverSpelKnop(knopX, knopPauzeY, knopPauzeBreedte, knopPauzeHoogte))
+      } else if (hoverVerderKnop())
         aanHetSpelen = true;
-      else if (hoverSpelKnop(knopX, knopPauzeY + knopPauzeHoogte, knopPauzeBreedte, knopPauzeHoogte))
+      else if (hoverOpnieuwKnop())
         initieerSubSet();
-      else if (hoverSpelKnop(knopX, knopPauzeY + knopPauzeHoogte * 2, knopPauzeBreedte, knopPauzeHoogte))
+      else if (hoverStoppenKnop())
         scherm = 0;
     } else
     {
-      if (hoverSpelKnop(knopX, knopStoppenY, knopStoppenBreedte, knopStoppenHoogte))
+      if (hoverStoppenNaUitspelen())
         scherm = 0;
     }
   }
@@ -93,7 +72,7 @@ void mouseClicked()
   // Scherm Verhaal of Scherm Tutorial
   else if (scherm == 5 || scherm == 6)
   {
-    if (hoverSpelKnop(knoppen[4][0], knoppen[4][1], knoppen[4][2], knoppen[4][3]))
+    if (hoverTerug())
       scherm = 0;
   }
 }

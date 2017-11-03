@@ -49,5 +49,17 @@ void scoreBepalen(String[] kandidaatset)
   {
     nieuweScore = nieuweScore - 3;
   }
-  speler1_Score += nieuweScore;
+  if (speler1Beurt)
+    speler1_Score += nieuweScore;
+  else
+    speler2_Score += nieuweScore;
+}
+
+void beurtWisselen()
+{
+  if (speler1Beurt)
+    menuNotificatie = "Speler 2 is aan de beurt.";
+  else
+    menuNotificatie = "Speler 1 is aan de beurt.";
+  speler1Beurt = !speler1Beurt;
 }

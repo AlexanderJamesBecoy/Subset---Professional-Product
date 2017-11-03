@@ -86,7 +86,10 @@ int nSetsOpTafel(boolean vierEigenschappen)
 void geefHint(boolean vierEigenschappen)
 {
   geselecteerdePosities = resetGeselecteerdePosities();
-  speler1_Score -= 5;
+  if (speler1Beurt)
+    speler1_Score -= 5;
+  else
+    speler2_Score -= 5;
   for (int kaart1 = 0; kaart1 < openKaarten.length; kaart1++)
   {
     String[] kaartenCombinaties = new String[3];
@@ -106,6 +109,7 @@ void geefHint(boolean vierEigenschappen)
               geselecteerdePosities[0] = kaart1;
               geselecteerdePosities[1] = kaart2;
               nGeselecteerdePosities = 2;
+              menuNotificatie = "Hint gegeven! -5 punten.";
               hintGegeven = true;
             }
           }
@@ -153,35 +157,24 @@ String[] verwijderOpenKaarten(String[] gekozenSet)
 {
   String[] kandidaatset = gekozenSet;
   String[] nieuweOpenKaarten = openKaarten;
-  for (int kaartIndex = 0; kaartIndex < openKaarten.length; kaartIndex++)
+  if (((scherm == 2 || scherm == 3) && openKaarten.length == 12) || (scherm == 4 && openKaarten.length == 15))
   {
-    for (int kandidaatIndex = 0; kandidaatIndex < kandidaatset.length; kandidaatIndex++)
+    nieuweOpenKaarten = openKaartenVerschuiven(nieuweOpenKaarten, gekozenSet);
+  } else {
+    for (int kaartIndex = 0; kaartIndex < openKaarten.length; kaartIndex++)
     {
-      if (nieuweOpenKaarten[kaartIndex] == kandidaatset[kandidaatIndex])
+      for (int kandidaatIndex = 0; kandidaatIndex < kandidaatset.length; kandidaatIndex++)
       {
-        if (nGedekteKaarten > 0)
+        if (nieuweOpenKaarten[kaartIndex] == kandidaatset[kandidaatIndex])
         {
-          if (scherm == 2 || scherm == 3)
+          if (nGedekteKaarten > 0)
           {
-            if (openKaarten.length > 9)
-            {
-              openKaarten = openKaartenVerschuiven(openKaarten, kandidaatIndex);
-              nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
-              nGedekteKaarten--;
-              printArray(openKaarten);
-            } else
-            {
-              nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
-              nGedekteKaarten--;
-            }
+            nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
+            nGedekteKaarten--;
           } else
-            {
-              nieuweOpenKaarten[kaartIndex] = gedekteKaarten[nGedekteKaarten - 1];
-              nGedekteKaarten--;
-            }
-        } else
-        {
-          nieuweOpenKaarten[kaartIndex] = "zzzz";
+          {
+            nieuweOpenKaarten[kaartIndex] = "zzzz";
+          }
         }
       }
     }
@@ -190,21 +183,33 @@ String[] verwijderOpenKaarten(String[] gekozenSet)
   return nieuweOpenKaarten;
 }
 
-String[] openKaartenVerschuiven(String[] kaarten, int gekozenKaartIndex)
+String[] openKaartenVerschuiven(String[] kaarten, String[] gekozenSet)
 {
-  String[] verschovenKaarten = new String[kaarten.length - 1];
-  String[] gekozenSet = kandidaatsetOmzetten(geselecteerdePosities);
+  String[] verschovenKaarten = new String[kaarten.length - 3];
   int index = 0;
   for (int kaart = 0; kaart < kaarten.length; kaart++)
   {
-    if (kaarten[kaart] != gekozenSet[gekozenKaartIndex])
+    if (kaarten[kaart] != gekozenSet[0] && kaarten[kaart] != gekozenSet[1] && kaarten[kaart] != gekozenSet[2])
     {
       verschovenKaarten[index] = openKaarten[kaart];
       index++;
     }
   }
   openKaarten = new String[verschovenKaarten.length];
+  printArray(verschovenKaarten);
   return verschovenKaarten;
+}
+
+void pakNieuweKaarten()
+{
+  if ((scherm == 2 && openKaarten.length < 12) || (scherm == 4 && openKaarten.length < 15))
+  {
+    for (int kaart = 0; kaart < 3; kaart++)
+    {
+      openKaarten = append(openKaarten, gedekteKaarten[nGedekteKaarten - 1]);
+      nGedekteKaarten--;
+    }
+  }
 }
 
 int[] resetGeselecteerdePosities()

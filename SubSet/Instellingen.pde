@@ -3,6 +3,7 @@ int schermBreedte = 800;
 int schermHoogte = 600;
 final float MARGE = 0.015625 * schermBreedte;
 final float MENUHOOGTE = 0.26666666666 * schermHoogte;
+final float MODALHOOGTE = (schermHoogte - MENUHOOGTE) * 0.8;
 
 final float TEKSTGROOTTE_12 = 0.01875 * schermBreedte;
 final float TEKSTGROOTTE_16 = 0.025 * schermBreedte;

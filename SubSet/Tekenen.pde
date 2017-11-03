@@ -17,11 +17,10 @@ void tekenMenu() {
   rect(menuMarge, menuMarge, schermBreedte - MARGE, MENUHOOGTE - MARGE, menuMarge);
   float menuBarHoogte = (MENUHOOGTE - menuMarge * 2) / 2;
   float menuBarBreedte = menuBarHoogte * 0.75;
-  float knopHoogte = (MENUHOOGTE - MARGE * 3) / 2;
-  float knopBreedte = knopHoogte * 4;
-  float knopX = MARGE * 2;
-  float knopY = MARGE + knopHoogte;
   String[] menuBarStrings = {"Sets gevonden", "Score", "Speler 1", "Speler 2"};
+  boolean isSubSet = false;
+  if(scherm == 4)
+    isSubSet = true;
   textSize(TEKSTGROOTTE_16);
   for (int menuBarIndex = 0; menuBarIndex < 2; menuBarIndex++)
   {
@@ -46,9 +45,10 @@ void tekenMenu() {
     text(setsGevonden, puntenWaardenX, menuMarge + menuBarHoogte / 2);
     text(speler1_Score, puntenWaardenX, menuMarge + menuBarHoogte + menuBarHoogte / 2);
   }
-  menuTekst(menuNotificatie, knopX + MARGE, knopX);
-  pauzeKnop(knopX, knopY, knopBreedte, knopHoogte);
-  hintKnop(knopX + MARGE + knopBreedte, knopY, knopBreedte, knopHoogte);
+  menuTekst(menuNotificatie, MARGE * 2, MARGE * 3 + TEKSTGROOTTE_16);
+  text("Sets op tafel: " + nSetsOpTafel(isSubSet), MARGE * 2, MARGE * 2);
+  pauzeKnop(knoppenSpel[0][0], knoppenSpel[0][1], knoppenSpel[0][2], knoppenSpel[0][3]);
+  hintKnop(knoppenSpel[1][0], knoppenSpel[1][1], knoppenSpel[1][2], knoppenSpel[1][3]);
 }
 
 void menuTekst(String tekst, float xPositie, float yPositie)
