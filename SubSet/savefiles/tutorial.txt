@@ -1,14 +1,16 @@
 De regels van het spelletje lijken erg op die
 van Set, en zijn als volgt:
 
-Er zijn 27 unieke kaarten in het spel die op drie
+Er zijn unieke kaarten in het spel die op drie (of vier)
 eigenschappen van elkaar kunnen verschillen:
-
  - De hoeveelheid figuren: 1, 2 of 3
  - De vorm van de figuren: driehoeken, rechthoeken
    of ellipsen
  - De kleur van de figuren: rood, groen of blauw
-
+ - Bij spelvariant Set vulling: leeg, gestreept of gevuld
 Elke combinatie komt precies eenmaal voor. Zo is er
 dus bijvoorbeeld een kaart met 1 groene driehoek, een
 met 2 blauw ellipsen en een met 3 rode rechthoeken.
+
+Hints vragen en kaarten vanuit het stapel pakken
+kunnen je helpen maar het gaan je wat punten kosten!

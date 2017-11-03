@@ -7,7 +7,7 @@
  ============================*/
 int scherm = 0;
 
-String[] stringKnoppen = {"Speel", "\"Behind The Game\"", "Hoe Speel Je?", "Stoppen", "Terug", "Één-speler Subset", "Twee-speler Subset", "Één-speler Set", "Terug"};
+String[] stringKnoppen = {"Speel", "\"Behind The Game\"", "Regel", "Stoppen", "Terug", "Één-speler Subset", "Twee-speler Subset", "Één-speler Set", "Terug"};
 float[][] knoppenMenu = {
   {schermBreedte / 2, schermHoogte / 2, MENU_KNOPBREEDTE, MENU_KNOPHOOGTE}, 
   {schermBreedte / 2, schermHoogte / 2 + MARGE + MENU_KNOPHOOGTE, MENU_KNOPBREEDTE, MENU_KNOPHOOGTE}, 
