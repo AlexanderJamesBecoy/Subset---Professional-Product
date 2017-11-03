@@ -196,13 +196,12 @@ String[] openKaartenVerschuiven(String[] kaarten, String[] gekozenSet)
     }
   }
   openKaarten = new String[verschovenKaarten.length];
-  printArray(verschovenKaarten);
   return verschovenKaarten;
 }
 
 void pakNieuweKaarten()
 {
-  if ((scherm == 2 && openKaarten.length < 12) || (scherm == 4 && openKaarten.length < 15))
+  if (((scherm == 2 || scherm == 3) && openKaarten.length < 12) || (scherm == 4 && openKaarten.length < 15))
   {
     for (int kaart = 0; kaart < 3; kaart++)
     {
@@ -210,6 +209,10 @@ void pakNieuweKaarten()
       nGedekteKaarten--;
     }
   }
+  if(speler1Beurt)
+    speler1_Score -= 3;
+  else
+    speler2_Score -= 3;
 }
 
 int[] resetGeselecteerdePosities()

@@ -42,7 +42,7 @@ void tekenMenu() {
   }
   else
   {
-    text(setsGevonden, puntenWaardenX, menuMarge + menuBarHoogte / 2);
+    text(speler1_SetsGevonden, puntenWaardenX, menuMarge + menuBarHoogte / 2);
     text(speler1_Score, puntenWaardenX, menuMarge + menuBarHoogte + menuBarHoogte / 2);
   }
   menuTekst(menuNotificatie, MARGE * 2, MARGE * 3 + TEKSTGROOTTE_16);
@@ -192,7 +192,7 @@ void tekenKaart(String kaart, int bordpositie) {
 
 void tekenStapelKaarten(int nGedekteKaarten) {
   boolean genoegKaarten = false;
-  if((scherm == 2 && openKaarten.length == 12) || (scherm == 2 && openKaarten.length == 15))
+  if(((scherm == 2 || scherm == 3) && openKaarten.length == 12) || (scherm == 4 && openKaarten.length == 15))
     genoegKaarten = true;
   float kaartX = schermBreedte / 4 * 3;
   float kaartY = schermHoogte / 2;

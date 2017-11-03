@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>5</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>250</x>
-      <y>80</y>
-      <w>10</w>
-      <h>10</h>
+      <x>424</x>
+      <y>48</y>
+      <w>16</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes>type=initial</panel_attributes>
     <additional_attributes/>
@@ -15,32 +15,21 @@
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>230</x>
-      <y>140</y>
-      <w>50</w>
-      <h>20</h>
+      <x>392</x>
+      <y>160</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Start spel</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>230</x>
-      <y>170</y>
-      <w>50</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>Start timer</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>245</x>
-      <y>210</y>
-      <w>20</w>
-      <h>20</h>
+      <x>416</x>
+      <y>256</y>
+      <w>32</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>type=decision</panel_attributes>
     <additional_attributes/>
@@ -48,10 +37,10 @@
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>230</x>
-      <y>295</y>
-      <w>50</w>
-      <h>20</h>
+      <x>392</x>
+      <y>392</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Set gekozen</panel_attributes>
     <additional_attributes/>
@@ -59,10 +48,10 @@
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>245</x>
-      <y>325</y>
-      <w>20</w>
-      <h>20</h>
+      <x>416</x>
+      <y>440</y>
+      <w>32</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>type=decision</panel_attributes>
     <additional_attributes/>
@@ -70,10 +59,10 @@
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>80</x>
-      <y>325</y>
-      <w>50</w>
-      <h>20</h>
+      <x>152</x>
+      <y>440</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Speler onjuiste
 set notificeren</panel_attributes>
@@ -82,10 +71,10 @@ set notificeren</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>80</x>
-      <y>180</y>
-      <w>50</w>
-      <h>20</h>
+      <x>152</x>
+      <y>208</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Kaarten
 deselecteren</panel_attributes>
@@ -94,10 +83,10 @@ deselecteren</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>230</x>
-      <y>360</y>
-      <w>50</w>
-      <h>20</h>
+      <x>392</x>
+      <y>496</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Punten erbij</panel_attributes>
     <additional_attributes/>
@@ -105,10 +94,10 @@ deselecteren</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>230</x>
-      <y>395</y>
-      <w>50</w>
-      <h>20</h>
+      <x>392</x>
+      <y>552</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Gekozen set
 verwijderen</panel_attributes>
@@ -117,43 +106,32 @@ verwijderen</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>120</y>
-      <w>15</w>
-      <h>30</h>
+      <x>424</x>
+      <y>112</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>155</y>
-      <w>15</w>
-      <h>25</h>
+      <x>424</x>
+      <y>184</y>
+      <w>24</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>185</y>
-      <w>15</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>250</x>
-      <y>225</y>
-      <w>15</w>
-      <h>35</h>
+      <x>424</x>
+      <y>280</y>
+      <w>24</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
@@ -161,10 +139,10 @@ verwijderen</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>310</y>
-      <w>15</w>
-      <h>25</h>
+      <x>424</x>
+      <y>416</y>
+      <w>24</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
@@ -172,10 +150,10 @@ verwijderen</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>340</y>
-      <w>45</w>
-      <h>30</h>
+      <x>424</x>
+      <y>464</y>
+      <w>72</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>[juiste set]
 lt=&lt;-
@@ -185,10 +163,10 @@ lt=&lt;-
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>375</y>
-      <w>15</w>
-      <h>30</h>
+      <x>424</x>
+      <y>520</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -196,10 +174,10 @@ lt=&lt;-
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>125</x>
-      <y>325</y>
-      <w>130</w>
-      <h>20</h>
+      <x>224</x>
+      <y>440</y>
+      <w>208</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 [onjuiste set]</panel_attributes>
@@ -208,10 +186,10 @@ lt=&lt;-
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>125</x>
-      <y>185</y>
-      <w>130</w>
-      <h>45</h>
+      <x>224</x>
+      <y>216</y>
+      <w>208</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>240.0;70.0;150.0;10.0;10.0;10.0</additional_attributes>
@@ -219,10 +197,10 @@ lt=&lt;-
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
-      <y>195</y>
-      <w>15</w>
-      <h>140</h>
+      <x>184</x>
+      <y>232</y>
+      <w>24</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;260.0</additional_attributes>
@@ -230,10 +208,10 @@ lt=&lt;-
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>245</x>
-      <y>430</y>
-      <w>20</w>
-      <h>20</h>
+      <x>416</x>
+      <y>608</y>
+      <w>32</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>type=decision</panel_attributes>
     <additional_attributes/>
@@ -241,10 +219,10 @@ lt=&lt;-
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>215</y>
-      <w>230</w>
-      <h>135</h>
+      <x>440</x>
+      <y>264</y>
+      <w>368</w>
+      <h>216</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;440.0;10.0;440.0;250.0</additional_attributes>
@@ -252,10 +230,10 @@ lt=&lt;-
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>445</x>
-      <y>340</y>
-      <w>70</w>
-      <h>30</h>
+      <x>736</x>
+      <y>464</y>
+      <w>112</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Gekozen set locaties
 verplaatsen met
@@ -265,10 +243,10 @@ gedekte kaarten</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>365</y>
-      <w>315</w>
-      <h>85</h>
+      <x>440</x>
+      <y>504</y>
+      <w>504</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 [er zijn nog gedekte kaarten]</panel_attributes>
@@ -277,10 +255,10 @@ gedekte kaarten</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>410</y>
-      <w>15</w>
-      <h>30</h>
+      <x>424</x>
+      <y>576</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -288,10 +266,10 @@ gedekte kaarten</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>65</x>
-      <y>150</y>
-      <w>195</w>
-      <h>300</h>
+      <x>128</x>
+      <y>160</y>
+      <w>312</w>
+      <h>480</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 [er zijn geen gedekte kaarten
@@ -301,10 +279,10 @@ maar wel sets te vinden]</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>445</y>
-      <w>90</w>
-      <h>30</h>
+      <x>424</x>
+      <y>632</y>
+      <w>144</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>  [er zijn geen sets op het
   speeldeck te vinden]
@@ -315,128 +293,22 @@ lt=&lt;-
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>230</x>
-      <y>465</y>
-      <w>50</w>
-      <h>20</h>
+      <x>392</x>
+      <y>664</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Spel
 uitgespeeld</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>230</x>
-      <y>500</y>
-      <w>50</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>Laad
-highscore.txt</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLSpecialState</id>
-    <coordinates>
-      <x>245</x>
-      <y>535</y>
-      <w>20</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>type=decision</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>230</x>
-      <y>570</y>
-      <w>50</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>Feliciteer
-speler</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>230</x>
-      <y>605</y>
-      <w>50</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>Voeg score in
-de highscore</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>480</y>
-      <w>15</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>250</x>
-      <y>515</y>
-      <w>15</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>250</x>
-      <y>550</y>
-      <w>145</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>[score is hoger dan een van de highscores]
-lt=&lt;-
-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>250</x>
-      <y>585</y>
-      <w>15</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>260</x>
-      <y>540</y>
-      <w>220</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-[score is niet hoger dan
-een van de highscores]</panel_attributes>
-    <additional_attributes>10.0;220.0;280.0;220.0;280.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>250</x>
-      <y>620</y>
-      <w>15</w>
-      <h>30</h>
+      <x>424</x>
+      <y>688</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -444,55 +316,10 @@ een van de highscores]</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>245</x>
-      <y>640</y>
-      <w>20</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>type=decision</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>250</x>
-      <y>655</y>
-      <w>15</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>230</x>
-      <y>675</y>
-      <w>50</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>Toon
-highscores</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>250</x>
-      <y>690</y>
-      <w>15</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLSpecialState</id>
-    <coordinates>
-      <x>250</x>
-      <y>710</y>
-      <w>10</w>
-      <h>10</h>
+      <x>424</x>
+      <y>720</y>
+      <w>16</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes>type=final</panel_attributes>
     <additional_attributes/>
@@ -500,10 +327,10 @@ highscores</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>245</x>
-      <y>250</y>
-      <w>20</w>
-      <h>20</h>
+      <x>416</x>
+      <y>320</y>
+      <w>32</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>type=decision</panel_attributes>
     <additional_attributes/>
@@ -511,10 +338,10 @@ highscores</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>255</x>
-      <y>260</y>
-      <w>110</w>
-      <h>45</h>
+      <x>432</x>
+      <y>336</y>
+      <w>176</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>[pauzeren]
 lt=&lt;-
@@ -524,10 +351,10 @@ lt=&lt;-
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>265</y>
-      <w>50</w>
-      <h>40</h>
+      <x>424</x>
+      <y>344</y>
+      <w>80</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>
 
@@ -539,10 +366,10 @@ lt=&lt;-
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>355</x>
-      <y>280</y>
-      <w>50</w>
-      <h>20</h>
+      <x>592</x>
+      <y>368</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Spel
 gepauzeerd</panel_attributes>
@@ -551,10 +378,10 @@ gepauzeerd</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
-      <y>285</y>
-      <w>25</w>
-      <h>15</h>
+      <x>664</x>
+      <y>376</y>
+      <w>40</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>30.0;10.0;10.0;10.0</additional_attributes>
@@ -562,10 +389,10 @@ gepauzeerd</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>415</x>
-      <y>280</y>
-      <w>20</w>
-      <h>20</h>
+      <x>688</x>
+      <y>368</y>
+      <w>32</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>type=decision</panel_attributes>
     <additional_attributes/>
@@ -573,10 +400,10 @@ gepauzeerd</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>255</x>
-      <y>155</y>
-      <w>235</w>
-      <h>135</h>
+      <x>432</x>
+      <y>168</y>
+      <w>376</w>
+      <h>216</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 [Spel doorspelen]</panel_attributes>
@@ -585,10 +412,10 @@ gepauzeerd</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>295</y>
-      <w>65</w>
-      <h>55</h>
+      <x>696</x>
+      <y>392</y>
+      <w>104</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 [Spel beëindigen]</panel_attributes>
@@ -597,10 +424,10 @@ gepauzeerd</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>420</x>
-      <y>340</y>
-      <w>10</w>
-      <h>10</h>
+      <x>696</x>
+      <y>464</y>
+      <w>16</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes>type=final</panel_attributes>
     <additional_attributes/>
@@ -608,10 +435,10 @@ gepauzeerd</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>245</x>
-      <y>105</y>
-      <w>20</w>
-      <h>20</h>
+      <x>416</x>
+      <y>88</y>
+      <w>32</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>type=decision</panel_attributes>
     <additional_attributes/>
@@ -619,10 +446,10 @@ gepauzeerd</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>85</y>
-      <w>15</w>
-      <h>30</h>
+      <x>424</x>
+      <y>56</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -630,37 +457,38 @@ gepauzeerd</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
+      <x>712</x>
       <y>120</y>
-      <w>100</w>
-      <h>180</h>
+      <w>160</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>
 
 
 [spel opnieuw starten]
 lt=&lt;-</panel_attributes>
-    <additional_attributes>40.0;10.0;40.0;180.0;50.0;200.0;40.0;220.0;40.0;340.0;10.0;340.0</additional_attributes>
+    <additional_attributes>40.0;10.0;40.0;170.0;50.0;190.0;40.0;210.0;40.0;330.0;10.0;330.0</additional_attributes>
   </element>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>425</x>
-      <y>105</y>
-      <w>50</w>
-      <h>20</h>
+      <x>704</x>
+      <y>88</y>
+      <w>80</w>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>Score en time
+    <panel_attributes>Score en
+sets gevonden
 resetten</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>110</y>
-      <w>175</w>
-      <h>15</h>
+      <x>440</x>
+      <y>96</y>
+      <w>280</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;330.0;10.0</additional_attributes>
@@ -668,10 +496,10 @@ resetten</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>250</y>
-      <w>75</w>
-      <h>30</h>
+      <x>312</x>
+      <y>320</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 [hint vragen
@@ -682,10 +510,10 @@ hint gevraagd]</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>115</x>
-      <y>250</y>
-      <w>70</w>
-      <h>25</h>
+      <x>208</x>
+      <y>320</y>
+      <w>112</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>Twee kaarten 
 worden gemarkeerd</panel_attributes>
@@ -694,10 +522,10 @@ worden gemarkeerd</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>125</x>
-      <y>210</y>
-      <w>50</w>
-      <h>20</h>
+      <x>224</x>
+      <y>256</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Licht punten
 aftrekken</panel_attributes>
@@ -706,10 +534,10 @@ aftrekken</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>145</x>
-      <y>225</y>
-      <w>15</w>
-      <h>35</h>
+      <x>256</x>
+      <y>280</y>
+      <w>24</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
@@ -718,10 +546,10 @@ aftrekken</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>170</x>
-      <y>215</y>
-      <w>85</w>
-      <h>15</h>
+      <x>296</x>
+      <y>264</y>
+      <w>136</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
@@ -729,10 +557,10 @@ aftrekken</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>250</y>
-      <w>105</w>
-      <h>30</h>
+      <x>440</x>
+      <y>320</y>
+      <w>168</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 [ik zie geen set en
@@ -743,10 +571,10 @@ gevraagd]</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>355</x>
-      <y>250</y>
-      <w>50</w>
-      <h>20</h>
+      <x>592</x>
+      <y>320</y>
+      <w>80</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Drie kaarten
 komen er bij</panel_attributes>
@@ -755,10 +583,10 @@ komen er bij</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>255</x>
-      <y>220</y>
-      <w>135</w>
-      <h>40</h>
+      <x>432</x>
+      <y>272</y>
+      <w>216</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;30.0;30.0;250.0;30.0;250.0;60.0</additional_attributes>
@@ -766,10 +594,10 @@ komen er bij</panel_attributes>
   <element>
     <id>UMLObject</id>
     <coordinates>
-      <x>45</x>
-      <y>50</y>
-      <w>530</w>
-      <h>685</h>
+      <x>96</x>
+      <y>0</y>
+      <w>848</w>
+      <h>752</h>
     </coordinates>
     <panel_attributes>Globale Flow
 valign=top</panel_attributes>

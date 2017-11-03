@@ -10,7 +10,8 @@ int muisOverKaart = -1;
 boolean aanHetSpelen = false;
 boolean hintGegeven = false;
 
-int setsGevonden = 0;
+int speler1_SetsGevonden = 0;
+int speler2_SetsGevonden = 0;
 int speler1_Score = 0;
 int speler2_Score = 0;
 boolean speler1Beurt = true;
@@ -18,8 +19,9 @@ boolean speler1Beurt = true;
 void initieerSubSet()
 {
   aanHetSpelen = true;
+  hintGegeven = false;
   menuNotificatie = "";
-  setsGevonden = 0;
+  speler1_SetsGevonden = 0;
   speler1_Score = 0;
   speler2_Score = 0;
   geselecteerdePosities = resetGeselecteerdePosities();
@@ -69,14 +71,13 @@ void speelSubSet()
         String[] kandidaatset = kandidaatsetOmzetten(geselecteerdePosities);
         if (isSet(kandidaatset, false))
         {
-          setsGevonden++;
+          speler1_SetsGevonden++;
           scoreBepalen(kandidaatset);
           openKaarten = verwijderOpenKaarten(kandidaatset);
           menuNotificatie = "SET!";
           if (scherm == 3)
           {
-            if (hintGegeven)
-              beurtWisselen();
+            beurtWisselen();
           }
         } else
         {
@@ -109,69 +110,29 @@ void spelGewonnen()
   float rectBreedte = schermBreedte / 2;
   float rectX = rectBreedte - rectBreedte / 2;
   float rectY = MENUHOOGTE + rectMarge;
-  if(scherm == 2 || scherm == 4)
+  tekenModal("UITKOMST", rectX, rectY, rectBreedte, MODALHOOGTE);
+  fill(WHITE);
+  textSize(TEKSTGROOTTE_16);
+  float textX = rectX + MARGE * 4;
+  if (scherm == 2 || scherm == 4)
   {
-    String file = "savefiles/highscoreSubset.txt";
-    if(scherm == 4)
-      file = "savefiles/highscoreSet.txt";
-    String[] highscoreLijst = loadStrings(file);
-    tekenModal("HIGHSCORE", rectX, rectY, rectBreedte, MODALHOOGTE);
-    for (int highScore = 0; highScore < highscoreLijst.length; highScore++)
-    {
-      if (speler1_Score > float(highscoreLijst[highScore]))
-      {
-        menuNotificatie = "Nieuwe highscore!";
-        highscoreLijst = newHighscore(highscoreLijst, speler1_Score);
-        saveStrings(file, highscoreLijst);
-      }
-    }
-    for (int highscoreIndex = 0; highscoreIndex < highscoreLijst.length; highscoreIndex++)
-    {
-      fill(WHITE);
-      textSize(TEKSTGROOTTE_16);
-      textAlign(RIGHT, TOP);
-      text((highscoreIndex + 1) + ". ", rectX + rectMarge + rectBreedte / 5, rectY + TEKSTGROOTTE_16 * (highscoreIndex + 3));
-      text(highscoreLijst[highscoreIndex], rectX + rectMarge + rectBreedte / 3, rectY + TEKSTGROOTTE_16 * (highscoreIndex + 3));
-    }
-  }
-  else
+    textAlign(LEFT, TOP);
+    text("Je hebt " + speler1_SetsGevonden + " sets gevonden", textX, rectY + TEKSTGROOTTE_16 * 6);
+    text("en een score van " + speler1_Score, textX, rectY + TEKSTGROOTTE_16 * 8);
+  } else
   {
-    tekenModal("UITKOMST", rectX, rectY, rectBreedte, MODALHOOGTE);
     String winner = "Speler 1 wint!";
-    if(speler2_Score == speler1_Score)
+    if (speler2_Score == speler1_Score)
       winner = "Gelijk spel!";
-    else if(speler2_Score > speler1_Score)
+    else if (speler2_Score > speler1_Score)
       winner = "Speler 2 wint!";
-    text(winner, rectX, rectY + MODALHOOGTE / 2, rectBreedte, MODALHOOGTE);
+    textAlign(CENTER, TOP);
+    text(winner, schermBreedte / 2, rectY + TEKSTGROOTTE_16 * 4);
+    textAlign(LEFT, TOP);
+    text("Speler 1 heeft " + speler1_SetsGevonden + " sets gevonden", textX, rectY + TEKSTGROOTTE_16 * 6);
+    text("en een score van " + speler1_Score, textX, rectY + TEKSTGROOTTE_16 * 8);
+    text("Speler 2 heeft " + speler2_SetsGevonden + " sets gevonden", textX, rectY + TEKSTGROOTTE_16 * 12);
+    text("en een score van " + speler2_Score, textX, rectY + TEKSTGROOTTE_16 * 14);
   }
   tekenKnop("Terug naar het hoofdmenu", schermBreedte / 2, rectY + MODALHOOGTE + MARGE * 2, rectBreedte, MODALHOOGTE / 8);
-}
-
-String[] newHighscore(String[] oudeHighscore, int newScore)
-{
-  String[] newHighscore = new String[oudeHighscore.length];
-  int[] oudeHighscoreInFloat = int(oudeHighscore);
-  int tempWaarde = 0;
-  boolean gescoord = false;
-  for(int scoreIndex = 0; scoreIndex < oudeHighscoreInFloat.length; scoreIndex++)
-  {
-    if(!gescoord)
-    {
-      if(newScore > oudeHighscoreInFloat[scoreIndex])
-      {
-        tempWaarde = oudeHighscoreInFloat[scoreIndex];
-        oudeHighscoreInFloat[scoreIndex] = newScore;
-        gescoord = true;
-      }
-    } else
-    {
-      oudeHighscoreInFloat[scoreIndex] = tempWaarde;
-      tempWaarde = oudeHighscoreInFloat[scoreIndex];
-    }
-  }
-  for(int stringIndex = 0; stringIndex < newHighscore.length; stringIndex++)
-  {
-    newHighscore[stringIndex] = "" + oudeHighscoreInFloat[stringIndex] + "";
-  }
-  return newHighscore;
 }
