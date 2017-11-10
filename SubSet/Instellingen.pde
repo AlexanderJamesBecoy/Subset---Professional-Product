@@ -1,6 +1,15 @@
 String[] eigenschappen = {"123", "rgb", "red", "lgv"};
 int schermBreedte = 800;
 int schermHoogte = 600;
+
+final int HOOFDMENU = 0;
+final int SPELVARIANTEN = 1;
+final int EENSPELERSUBSET = 2;
+final int TWEESPELERSSUBSET = 3;
+final int EENSPELERSET = 4;
+final int VERHAAL = 5;
+final int TUTORIAL = 6;
+
 final float MARGE = 0.015625 * schermBreedte;
 final float MENUHOOGTE = 0.26666666666 * schermHoogte;
 final float MODALHOOGTE = (schermHoogte - MENUHOOGTE) * 0.8;

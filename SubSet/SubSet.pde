@@ -5,23 +5,22 @@ void settings()
 
 void draw()
 {
-  /* Hoofdmenu */
-  if(scherm == 0)
+  if(scherm == HOOFDMENU)
     beeldMenu();
     
   /* Kies spelvariant */
-  if(scherm == 1)
+  if(scherm == SPELVARIANTEN)
     beeldSpelVarianten();
   
   /* Spelvarianten spelen */
-  if(scherm == 2 || scherm == 3 || scherm == 4)
+  if(scherm == EENSPELERSUBSET || scherm == TWEESPELERSSUBSET || scherm == EENSPELERSET)
     speelSubSet();
   
   /* Bekijk verhaal achter het spel */
-  if(scherm == 5)
+  if(scherm == VERHAAL)
     beeldVerhaal();
   
   /* Bekijk tutorial */
-  if(scherm == 6)
+  if(scherm == TUTORIAL)
     beeldTutorial(); 
 }
